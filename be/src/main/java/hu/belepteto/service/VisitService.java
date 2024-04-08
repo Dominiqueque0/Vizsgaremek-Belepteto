@@ -40,7 +40,6 @@ public class VisitService {
         Reason reason = repository.getReferenceById(createVisit.getReasonId()).getReason();
         visit.setReason(reason);
         visit.setEntryTime(new Date());
-        visit.setExitTime(new Date());
         Visit created = repository.save(visit);
 
         SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss");
@@ -50,7 +49,6 @@ public class VisitService {
                 created.getVisitor().getId(),
                 created.getJanitor().getId(),
                 sdf.format(created.getEntryTime()),
-                sdf.format(created.getExitTime()),
                 created.getReason().getId()
         );
     }

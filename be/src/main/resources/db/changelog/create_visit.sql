@@ -3,7 +3,7 @@ CREATE TABLE visit (
     visitor_id INT,
     janitor_id INT,
     entry_time TIMESTAMP,
-    exit_time  TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    exit_time  TIMESTAMP NULL,
     reason_id INT,
 
     FOREIGN KEY(visitor_id) REFERENCES visitor(id),

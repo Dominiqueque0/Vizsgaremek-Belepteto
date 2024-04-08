@@ -26,8 +26,8 @@ public class SwaggerConfiguration {
                         addList("Bearer Authentication"))
                 .components(new Components().addSecuritySchemes
                         ("Bearer Authentication", createAPIKeyScheme()))
-                .info(new Info().title("Kocka API")
-                        .description("Kockák számára készült webszervíz")
+                .info(new Info().title("Beléptető API")
+                        .description("Porta számára készült webszervíz")
                 );
     }
 

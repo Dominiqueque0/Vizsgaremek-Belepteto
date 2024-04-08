@@ -19,6 +19,14 @@ public class GetVisit {
         this.reasonId = reasonId;
     }
 
+    public GetVisit(Integer id, Integer visitorId, Integer janitorId, String entryTime, Integer reasonId) {
+        this.id = id;
+        this.visitorId = visitorId;
+        this.janitorId = janitorId;
+        this.entryTime = entryTime;
+        this.reasonId = reasonId;
+    }
+
     public GetVisit() {
     }
 

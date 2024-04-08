@@ -12,15 +12,11 @@ import java.util.Date;
 public class CreateVisit {
     private Integer visitorId;
     private Integer janitorId;
-    private Date entryTime;
-    private Date exitTime;
     private Integer reasonId;
 
-    public CreateVisit(Integer visitorId, Integer janitorId, Date entryTime, Date exitTime, Integer reasonId) {
+    public CreateVisit(Integer visitorId, Integer janitorId, Integer reasonId) {
         this.visitorId = visitorId;
         this.janitorId = janitorId;
-        this.entryTime = entryTime;
-        this.exitTime = exitTime;
         this.reasonId = reasonId;
     }
 
@@ -41,22 +37,6 @@ public class CreateVisit {
 
     public void setJanitorId(Integer janitorId) {
         this.janitorId = janitorId;
-    }
-
-    public Date getEntryTime() {
-        return entryTime;
-    }
-
-    public void setEntryTime(Date entryTime) {
-        this.entryTime = entryTime;
-    }
-
-    public Date getExitTime() {
-        return exitTime;
-    }
-
-    public void setExitTime(Date exitTime) {
-        this.exitTime = exitTime;
     }
 
     public Integer getReasonId() {

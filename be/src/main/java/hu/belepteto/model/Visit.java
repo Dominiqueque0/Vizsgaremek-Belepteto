@@ -1,5 +1,6 @@
 package hu.belepteto.model;
 
+import jakarta.annotation.Nullable;
 import jakarta.persistence.*;
 
 import java.util.Date;
@@ -18,6 +19,8 @@ public class Visit {
     @JoinColumn(name = "janitor_id")
     private Users janitor;
     private Date entryTime;
+
+    @Nullable
     private Date exitTime;
     @OneToOne
     @JoinColumn(name = "reason_id")
@@ -29,6 +32,14 @@ public class Visit {
         this.janitor = janitor;
         this.entryTime = entryTime;
         this.exitTime = exitTime;
+        this.reason = reason;
+    }
+
+    public Visit(Integer id, Visitor visitor, Users janitor, Date entryTime, Reason reason) {
+        this.id = id;
+        this.visitor = visitor;
+        this.janitor = janitor;
+        this.entryTime = entryTime;
         this.reason = reason;
     }
 
