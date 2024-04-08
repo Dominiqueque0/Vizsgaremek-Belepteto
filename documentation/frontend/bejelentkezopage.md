@@ -6,7 +6,7 @@ Alapfunkciók: A felhasználó bejelentkeztetése, illetve a megfelelő oldalra 
 
 ## Felületi terv:
 
-### Listázó felület
+### Bejelentkező felület
 
 #### Arculat
 
