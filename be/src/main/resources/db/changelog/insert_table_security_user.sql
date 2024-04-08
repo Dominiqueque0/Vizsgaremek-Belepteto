@@ -1,0 +1,2 @@
+insert into security_user (first_name, last_name, username, password, role, authority) values
+('Pippin', 'Kis', 'teszt', '$2a$12$CcU2JZjJ5OnKj7yBUlPgsugjzGYYJJNr68emZn49B4bOQs94vAasK', 'ROLE_USER', 'permission:user');
