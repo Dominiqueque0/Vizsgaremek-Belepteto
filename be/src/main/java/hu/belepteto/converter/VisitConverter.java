@@ -20,4 +20,17 @@ public class VisitConverter {
         getVisit.setReasonId(visit.getReason().getId());
         return getVisit;
     }
+
+    public static GetVisit convertVisitToGetNoExitTime(Visit visit) {
+        GetVisit getVisit = new GetVisit();
+        getVisit.setId(visit.getId());
+        getVisit.setVisitorId(visit.getVisitor().getId());
+        getVisit.setJanitorId(visit.getJanitor().getId());
+
+        SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss");
+
+        getVisit.setEntryTime(sdf.format(visit.getEntryTime()));
+        getVisit.setReasonId(visit.getReason().getId());
+        return getVisit;
+    }
 }

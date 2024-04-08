@@ -56,7 +56,7 @@ public class VisitService {
         if (!repository.existsById(id))
             throw new ResponseStatusException(HttpStatus.NOT_FOUND);
         Visit visit = repository.getReferenceById(id);
-        GetVisit getVisit = VisitConverter.convertVisitToGet(visit);
+        GetVisit getVisit = VisitConverter.convertVisitToGetNoExitTime(visit);
         return getVisit;
     }
 
@@ -64,7 +64,7 @@ public class VisitService {
         List<GetVisit> getVisitList = new ArrayList<>();
         List<Visit> visitList = repository.findAll();
         for (Visit visit : visitList) {
-            getVisitList.add(VisitConverter.convertVisitToGet(visit));
+            getVisitList.add(VisitConverter.convertVisitToGetNoExitTime(visit));
         }
         return getVisitList;
     }
