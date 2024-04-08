@@ -12,3 +12,4 @@ hogy az elveszik vagy valakit lehagynak, illetve papíron visszakeresni lassabb.
 
 Dokumentációk:
 ### [Backend](/documentation/backend/main.md) <br>
+### [Frontend](/documentation/frontend/main.md) <br>
