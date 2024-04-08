@@ -57,7 +57,13 @@ export function TeljesTablaPortas() {
 
 }
 
+const [visit, setVisit] = useState([]);
 
+function belep(id){
+  axios.post(`/visit`, `/visitor/${id}`, {headers:{Authorization:localStorage.getItem('token')}}).then((response) => {
+    setVisit(visit.concat(response.data))
+  })
+}
 
   return (
     <TableContainer component={Paper}>
@@ -67,7 +73,7 @@ export function TeljesTablaPortas() {
             <StyledTableCell className='cellaHead' align='center'>Id</StyledTableCell>
             <StyledTableCell className='cellaHead' align="center">Név</StyledTableCell>
             <StyledTableCell className='cellaHead' align="center">Típus</StyledTableCell>
-            <StyledTableCell className='cellaHead' align="center">Születési dátum</StyledTableCell>
+            <StyledTableCell className='cellaHead' align="center">Személyi Szám</StyledTableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -76,7 +82,7 @@ export function TeljesTablaPortas() {
               <StyledTableCell component="th" scope="row" className='cella' align='center'>
                 {row.id}
               </StyledTableCell>
-              <StyledTableCell className='cellachoose' align="center" onClick={() => {belep}}>{row.name}</StyledTableCell>
+              <StyledTableCell className='cellachoose' align="center" onClick={belep}>{row.name}</StyledTableCell>
               <StyledTableCell className='cella' align="center">{row.personType}</StyledTableCell>
               <StyledTableCell className='cella' align="center">{row.birthDate}</StyledTableCell>
             </StyledTableRow>
@@ -124,12 +130,15 @@ export function TeljesTablaAdmin() {
     setVisitor(visitor.filter(item => item.id !== id));
   }
 
-  /*function belep(id){
-    axios.post(`/visit`, `/visitor/${id}`).then((response) => {
+  function belep(id, name){
+    const atmenoData = {
+      id : id,
+      name : name
+    }
+    axios.post(`/visit`, atmenoData, {headers: {Authorization: localStorage.getItem("token")}}).then((response) => {
       setVisit(visit.concat(response.data))
     })
-  }*/
-  console.log(localStorage.getItem('token'));
+  }
 try{
   React.useEffect(() => {
   axios.post(`/visitor/list`, null, {headers:{Authorization:localStorage.getItem('token')}}).then((response) => {
@@ -158,7 +167,7 @@ React.useEffect(() => {
             <StyledTableCell className='cellaHead' align='center'>Id</StyledTableCell>
             <StyledTableCell className='cellaHead' align="center">Név</StyledTableCell>
             <StyledTableCell className='cellaHead' align="center">Típus</StyledTableCell>
-            <StyledTableCell className='cellaHead' align="center">Születési dátum</StyledTableCell>
+            <StyledTableCell className='cellaHead' align="center">Személyi Szám</StyledTableCell>
             <StyledTableCell className='cellaHead' align="center"></StyledTableCell>
           </TableRow>
         </TableHead>
@@ -168,7 +177,7 @@ React.useEffect(() => {
               <StyledTableCell component="th" scope="row" className='cella' align='center'>
                 {row.id}
               </StyledTableCell>
-              <StyledTableCell className='cellachoose' align="center" onClick={() => { console.log(row.name)}}>{row.name}</StyledTableCell>
+              <StyledTableCell className='cellachoose' align="center" onClick={() => belep(row.id, row.name)}>{row.name}</StyledTableCell>
               <StyledTableCell className='cella' align="center">{row.visitorType}</StyledTableCell>
               <StyledTableCell className='cella' align="center">{row.idNumber}</StyledTableCell>
               <StyledTableCell align="center" className='cellachoose' onClick={() => {deletePerson(row.id)}}><Grid item xs={8}><DeleteIcon /></Grid></StyledTableCell>
@@ -181,7 +190,7 @@ React.useEffect(() => {
               <StyledTableCell component="th" scope="row" className='cella' align='center'>
                 {row.id}
               </StyledTableCell>
-              <StyledTableCell className='cellachoose' align="center" /*onClick={() => {belep(ro w.id)}}*/>{row.name}</StyledTableCell>
+              <StyledTableCell className='cellachoose' align="center" onClick={belep}>{row.name}</StyledTableCell>
               <StyledTableCell className='cella' align="center">{row.userType}</StyledTableCell>
               <StyledTableCell className='cella' align="center">{row.idNumber}</StyledTableCell>
               <StyledTableCell align="center" className='cellachoose' onClick={() => {deletePerson(row.id)}}><Grid item xs={8}><DeleteIcon /></Grid></StyledTableCell>

@@ -38,7 +38,6 @@ export function AppBarPortas() {
   const settings = ['Kijelentkezés'];
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
 
 
   const [anchorElNav, setAnchorElNav] = React.useState(null);
@@ -74,10 +73,8 @@ export function AppBarPortas() {
       visitorType : type,
       idNumber : ID
     }
-    console.log(felvettData)
     try{
     axios.post(`/visitor`, felvettData, {headers:{Authorization:localStorage.getItem('token')}}).then((response) => {
-      console.log(response.data);
       setPerson(person.concat([response.data]));
     })
   }catch(error){}
@@ -223,7 +220,7 @@ export function AppBarPortas() {
             </Typography>
             <TextField
               id="standard-helperText"
-              defaultValue="Név"
+              label="Név"
               variant="standard"
             />
             <br />
@@ -237,7 +234,7 @@ export function AppBarPortas() {
             <br />
             <TextField
               id="standard-helperTextSzem"
-              defaultValue="SzemélyiSzám"
+              label="Személyi szám"
               variant="standard"
             />
             <br />
@@ -295,12 +292,8 @@ export function AppBarAdmin() {
   })
 
   function felvetel(){
-    console.log(felvettData)
-    alert('dgfas')
     try{
     axios.post(`/visitor`, felvettData, {headers:{Authorization:localStorage.getItem('token')}}).then((response) => {
-      console.log(response.data);
-      alert(response.data);
       setPerson(person.concat([response.data]));
     })
   }catch(error){}
