@@ -1,9 +1,4 @@
 # Portai beléptető backend dokumentáció
-### Készítette:
-
-* Mikovics Ábel
-* Beri Alex
-* Goda Dominik
 
 ## A Backend Fő részei:
 

@@ -1,9 +1,4 @@
 # Portai beléptető frontend dokumentáció
-### Készítette:
-
-* Mikovics Ábel
-* Beri Alex
-* Goda Dominik
 
 ## A Frontend Fő részei:
 

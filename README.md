@@ -1,9 +1,9 @@
 # Portai beléptető dokumentáció
 ### Készítette:
 
-* Mikovics Ábel
-* Beri Alex
-* Goda Dominik
+* Mikovics Ábel - Frontend
+* Beri Alex - Backend
+* Goda Dominik - Dokumentáció, Adatbázis, Autentikáció
 
 ## Igény az alkalmazásra
 Gyakori probléma egyes munkahelyeken ahol portai szolgálat van, az érkező és távozó
