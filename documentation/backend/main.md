@@ -16,7 +16,7 @@
 
 ### [Szervíz csomagok](Service.md) <br>
 
-### [Felhasznált függőségek(Dependecies)](dependencies.md) <br>
+### [Felhasznált depencency-k](dependencies.md) <br>
 
 
 
