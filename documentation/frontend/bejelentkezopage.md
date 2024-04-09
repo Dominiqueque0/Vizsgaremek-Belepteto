@@ -21,7 +21,7 @@ Alapfunkciók: A felhasználó bejelentkeztetése, illetve a megfelelő oldalra 
 
 #### A felületen elérhető műveletek
 
-| Funkció                  |                                                                                 Esemény                                                                                 | Megjegyzés |
-|:-------------------------|:-----------------------------------------------------------------------------------------------------------------------------------------------------------------------:|-----------:|
-| Belépés gombra kattintás | Végrehajtásra került az UC-U-LOGIN, Felhasználó bejelentkezése használati eset. A frontend a felhasználó típusa szerint (Admin vagy portás) a megfelelő oldalra navigál |          - |
+| Funkció                  |                                                                                           Esemény                                                                                           | Megjegyzés |
+|:-------------------------|:-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------:|-----------:|
+| Belépés gombra kattintás | Végrehajtásra került az [UC-U-LOGIN](user_usecases.md), Felhasználó bejelentkezése használati eset. A frontend a felhasználó típusa szerint (Admin vagy portás) a megfelelő oldalra navigál |          - |
 
