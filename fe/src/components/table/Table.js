@@ -130,15 +130,21 @@ export function TeljesTablaAdmin() {
     setVisitor(visitor.filter(item => item.id !== id));
   }
 
-  function belep(id, name){
-    const atmenoData = {
-      id : id,
-      name : name
-    }
-    axios.post(`/visit`, atmenoData, {headers: {Authorization: localStorage.getItem("token")}}).then((response) => {
+  React.useEffect(() => {
+    axios.post(`/visit/list`, null, {headers:{Authorization:localStorage.getItem('token')}}).then((response) => {
+      let tempVisit = Object.values(response.data);
+      setVisit(tempVisit);
+    });
+  }, []);
+
+  function belep(id){
+    console.log(id);
+    axios.post(`/visit`, {visitorId:id}, {headers: {Authorization: localStorage.getItem("token")}}).then((response) => {
       setVisit(visit.concat(response.data))
     })
+    window.location.reload();
   }
+
 try{
   React.useEffect(() => {
   axios.post(`/visitor/list`, null, {headers:{Authorization:localStorage.getItem('token')}}).then((response) => {
@@ -203,6 +209,13 @@ React.useEffect(() => {
   );
 }
 export function BelepoTablaAdmin() {
+  let [visit, setVisit] = React.useState([]);
+  React.useEffect(() => {
+    axios.post(`/visit/list`, null, {headers:{Authorization:localStorage.getItem('token')}}).then((response) => {
+      let tempVisit = Object.values(response.data);
+      setVisit(tempVisit);
+    });
+  }, []);
   return (
     <TableContainer component={Paper}>
       <Table sx={{ minWidth: 400 }} aria-label="customized table">
@@ -215,11 +228,11 @@ export function BelepoTablaAdmin() {
           </TableRow>
         </TableHead>
         <TableBody>
-          {rows.map((row) => (
+          {visit.map((row) => (
             <StyledTableRow key={row.name}>
               <StyledTableCell className='cella' align="center">{row.name}</StyledTableCell>
-              <StyledTableCell className='cella' align="center"></StyledTableCell>
-              <StyledTableCell className='cella' align="center"></StyledTableCell>
+              <StyledTableCell className='cella' align="center">{row.entryTime}</StyledTableCell>
+              <StyledTableCell className='cella' align="center">{row.exitTime}</StyledTableCell>
               <StyledTableCell className='cella' align="center"><button>Kilépés rögzítése</button></StyledTableCell>
             </StyledTableRow>
           ))}
