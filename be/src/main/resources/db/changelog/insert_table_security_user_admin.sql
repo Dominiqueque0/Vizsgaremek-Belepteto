@@ -1,0 +1,2 @@
+insert into security_user (first_name, last_name, username, password, role, authority) values
+('László', 'Vitéz', 'admin', '$2a$10$jI0d6wmzDneQ9FWUmkfZaOcmPi0Ned4O4ptSQ63fv04SCCj742sE2', 'ROLE_ADMIN', 'permission:admin');

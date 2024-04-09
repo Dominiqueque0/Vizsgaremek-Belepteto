@@ -1,9 +1,4 @@
 # Portai beléptető backend dokumentáció
-### Készítette:
-
-* Mikovics Ábel
-* Beri Alex
-* Goda Dominik
 
 ## A Backend Fő részei:
 
@@ -20,6 +15,8 @@
 ### [Repository csomagok](Repository.md) <br>
 
 ### [Szervíz csomagok](Service.md) <br>
+
+### [Felhasznált depencency-k](dependencies.md) <br>
 
 
 
