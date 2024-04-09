@@ -124,11 +124,11 @@ export function TeljesTablaAdmin() {
     setVisitor(visitor.filter(item => item.id !== id));
   }
 
-  /*function belep(id){
+  function belep(id){
     axios.post(`/visit`, `/visitor/${id}`).then((response) => {
-      setVisit(visit.concat(response.data))
+      setVisit(visit.belep(response.data))
     })
-  }*/
+  }
   console.log(localStorage.getItem('token'));
 try{
   React.useEffect(() => {
@@ -181,7 +181,7 @@ React.useEffect(() => {
               <StyledTableCell component="th" scope="row" className='cella' align='center'>
                 {row.id}
               </StyledTableCell>
-              <StyledTableCell className='cellachoose' align="center" /*onClick={() => {belep(ro w.id)}}*/>{row.name}</StyledTableCell>
+              <StyledTableCell className='cellachoose' align="center" onClick={() => {belep(row.id)}}>{row.name}</StyledTableCell>
               <StyledTableCell className='cella' align="center">{row.userType}</StyledTableCell>
               <StyledTableCell className='cella' align="center">{row.idNumber}</StyledTableCell>
               <StyledTableCell align="center" className='cellachoose' onClick={() => {deletePerson(row.id)}}><Grid item xs={8}><DeleteIcon /></Grid></StyledTableCell>
