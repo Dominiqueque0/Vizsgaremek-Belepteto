@@ -45,6 +45,5 @@
 | Utófelvétel                | A felhasznló törlésre került a rendszerben.                                                    | 
 | Eredmény                   | A felhasználó nem tud bejelentkezni.                                                           | 
 | Használati eset realizáció | Technikai modell                                                                               | 
-| 
 
 ---
