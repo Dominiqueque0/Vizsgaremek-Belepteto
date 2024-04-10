@@ -1,0 +1,12 @@
+body{
+    background-color: rgba(24,26,27,114);
+}
+
+.inputs{
+    left: 40%;
+    top: 40%;
+    position: absolute;
+}
+.text-danger{
+    color:white
+}
