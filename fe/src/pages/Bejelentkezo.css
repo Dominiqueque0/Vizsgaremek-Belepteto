@@ -7,3 +7,6 @@ body{
     top: 40%;
     position: absolute;
 }
+.text-danger{
+    color:white
+}

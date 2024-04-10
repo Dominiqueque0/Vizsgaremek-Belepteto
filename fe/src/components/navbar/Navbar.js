@@ -31,6 +31,12 @@ const style = {
   p: 4,
 };
 
+/*---------------------------------------------------------------------------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------------------------------------------------------------------*/
+/*----------------------------------------------------------------PORTAS-----------------------------------------------------------------*/
+/*---------------------------------------------------------------------------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------------------------------------------------------------------*/
+
 
 export function AppBarPortas() {
   const history = useNavigate();
@@ -38,6 +44,7 @@ export function AppBarPortas() {
   const settings = ['Kijelentkezés'];
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
 
 
   const [anchorElNav, setAnchorElNav] = React.useState(null);
@@ -55,6 +62,10 @@ export function AppBarPortas() {
   };
 
   const handleCloseUserMenu = () => {
+    setAnchorElUser(null);
+  };
+
+  const kijelentkezes = () => {
     localStorage.removeItem('token');
     history('/');
     setAnchorElUser(null);
@@ -67,12 +78,13 @@ export function AppBarPortas() {
 
   let [person, setPerson] = useState([]);
 
-  function felvetel(name, type, ID){
-    const felvettData = {
-      name : name,
-      visitorType : type,
-      idNumber : ID
-    }
+  const [felvettData, setFelvettData] = useState({
+    name : "",
+    visitorType : "VENDEG",
+    idNumber : 1
+  })
+
+  function felvetel(){
     try{
     axios.post(`/visitor`, felvettData, {headers:{Authorization:localStorage.getItem('token')}}).then((response) => {
       setPerson(person.concat([response.data]));
@@ -82,11 +94,16 @@ export function AppBarPortas() {
   }
   const felvesz = function(){
     setOpen(false);
-    let uname = document.getElementById("standard-helperText").value;
-    let utype= document.getElementById("standard-disabled").value;
-    let uID= document.getElementById("standard-helperTextSzem").value;
-    felvetel(uname, utype, uID);
+    felvetel();
   }
+
+  const handleSelect = (event) => {
+    setFelvettData((prevData) => ({
+      ...prevData,
+      [event.target.name]: event.target.value
+    }))
+  }
+
   return (<>
     <AppBar position="static">
       <Container maxWidth="xl">
@@ -195,7 +212,7 @@ export function AppBarPortas() {
               onClose={handleCloseUserMenu}
             >
               {settings.map((setting) => (
-                <MenuItem key={setting} onClick={handleCloseUserMenu}>
+                <MenuItem key={setting} onClick={kijelentkezes}>
                   <Typography textAlign="center">{setting}</Typography>
                 </MenuItem>
               ))}
@@ -249,6 +266,14 @@ export function AppBarPortas() {
   );
 }
 
+
+/*---------------------------------------------------------------------------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------------------------------------------------------------------*/
+/*----------------------------------------------------------------ADMIN------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------------------------------------------------------------------*/
+
+
 export function AppBarAdmin() {
   const history = useNavigate();
   const pages = ['Felvétel'];
@@ -273,6 +298,10 @@ export function AppBarAdmin() {
   };
 
   const handleCloseUserMenu = () => {
+    setAnchorElUser(null);
+  };
+
+  const kijelentkezes = () => {
     localStorage.removeItem('token');
     history('/');
     setAnchorElUser(null);
@@ -363,7 +392,7 @@ export function AppBarAdmin() {
               }}
             >
               {pages.map((page) => (
-                <MenuItem key={page} onClick={handleCloseNavMenu}>
+                <MenuItem key={page} onClick={kijelentkezes}>
                   <Typography textAlign="center">{page}</Typography>
                 </MenuItem>
               ))}
@@ -418,7 +447,7 @@ export function AppBarAdmin() {
               onClose={handleCloseUserMenu}
             >
               {settings.map((setting) => (
-                <MenuItem key={setting} onClick={handleCloseUserMenu}>
+                <MenuItem key={setting} onClick={kijelentkezes}>
                   <Typography textAlign="center">{setting}</Typography>
                 </MenuItem>
               ))}

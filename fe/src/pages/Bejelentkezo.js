@@ -28,6 +28,7 @@ export default function Bejelentkezo() {
             if(response.data.userType === "ADMIN"){
                 history('/admin'); 
             }
+            localStorage.setItem('auth', response.data.userType);
             localStorage.setItem('token', 'Bearer ' + response.headers['jwt-token']);
             console.log('Login successful :', localStorage.getItem('token')); 
             axios.defaults.headers.common['Authorization'] = localStorage.getItem('token');
@@ -43,6 +44,7 @@ export default function Bejelentkezo() {
       localStorage.getItem('token');
     }, [items]);
 
+    
     return (
         <>
             <div className="inputs">
@@ -56,7 +58,7 @@ export default function Bejelentkezo() {
                         fontFamily: 'monospace',
                         fontWeight: 700,
                         letterSpacing: '.3rem',
-                        color: 'inherit',
+                        color: 'white',
                         textDecoration: 'none',
                     }}
                 >
@@ -69,6 +71,13 @@ export default function Bejelentkezo() {
                     helperText=""
                     value={username}
                     onChange={(e) => setUsername(e.target.value)}
+                    sx={{
+                        color:'white',
+                        bgcolor:'white',
+                        borderRadius:2,
+                        borderColor:'white',
+                        border:'3px'
+                    }}
                 />
                 <TextField
                     id="outlined-password-input"
@@ -77,8 +86,16 @@ export default function Bejelentkezo() {
                     autoComplete="current-password"
                     value={password} 
                     onChange={(e) => setPassword(e.target.value)}
+                    sx={{
+                        color:'white',
+                        bgcolor:'white',
+                        borderRadius:2,
+                        borderColor:'white',
+                        border:'3px'
+                    }}
                 />
-                {error && <p className="text-danger">{error}</p>}
+                {error && <p className="text-danger"
+                >{error}</p>}
                 <Button
                     sx={{ my: 2, color: 'white', display: 'block' , bgcolor: 'blue'}}
                     onClick={handleLogin}
