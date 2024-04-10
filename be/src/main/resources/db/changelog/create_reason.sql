@@ -1,4 +1,0 @@
-CREATE TABLE reason(
-    id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
-    description VARCHAR(50)
-);

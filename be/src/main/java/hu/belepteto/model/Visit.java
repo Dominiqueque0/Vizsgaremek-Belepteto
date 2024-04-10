@@ -14,33 +14,22 @@ public class Visit {
     @ManyToOne
     @JoinColumn(name = "visitor_id")
     private Visitor visitor;
-
-    @ManyToOne
-    @JoinColumn(name = "janitor_id")
-    private Users janitor;
     private Date entryTime;
 
     @Nullable
     private Date exitTime;
-    @OneToOne
-    @JoinColumn(name = "reason_id")
-    private Reason reason;
 
-    public Visit(Integer id, Visitor visitor, Users janitor, Date entryTime, Date exitTime, Reason reason) {
+    public Visit(Integer id, Visitor visitor, Date entryTime, Date exitTime) {
         this.id = id;
         this.visitor = visitor;
-        this.janitor = janitor;
         this.entryTime = entryTime;
         this.exitTime = exitTime;
-        this.reason = reason;
     }
 
-    public Visit(Integer id, Visitor visitor, Users janitor, Date entryTime, Reason reason) {
+    public Visit(Integer id, Visitor visitor, Date entryTime) {
         this.id = id;
         this.visitor = visitor;
-        this.janitor = janitor;
         this.entryTime = entryTime;
-        this.reason = reason;
     }
 
     public Visit() {
@@ -62,14 +51,6 @@ public class Visit {
         this.visitor = visitor;
     }
 
-    public Users getJanitor() {
-        return janitor;
-    }
-
-    public void setJanitor(Users janitor) {
-        this.janitor = janitor;
-    }
-
     public Date getEntryTime() {
         return entryTime;
     }
@@ -84,13 +65,5 @@ public class Visit {
 
     public void setExitTime(Date exitTime) {
         this.exitTime = exitTime;
-    }
-
-    public Reason getReason() {
-        return reason;
-    }
-
-    public void setReason(Reason reason) {
-        this.reason = reason;
     }
 }
