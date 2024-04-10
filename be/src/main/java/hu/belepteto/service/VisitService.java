@@ -32,13 +32,10 @@ public class VisitService {
     private UserRepository userRepository;
 
     public GetVisit createVisit(CreateVisit createVisit) {
+        System.out.println("hello");
         Visit visit = new Visit();
         Visitor visitor = visitorRepository.getReferenceById(createVisit.getVisitorId());
         visit.setVisitor(visitor);
-        Users user = userRepository.getReferenceById(createVisit.getJanitorId());
-        visit.setJanitor(user);
-        Reason reason = repository.getReferenceById(createVisit.getReasonId()).getReason();
-        visit.setReason(reason);
         visit.setEntryTime(new Date());
         Visit created = repository.save(visit);
 
@@ -47,9 +44,8 @@ public class VisitService {
         return new GetVisit(
                 created.getId(),
                 created.getVisitor().getId(),
-                created.getJanitor().getId(),
-                sdf.format(created.getEntryTime()),
-                created.getReason().getId()
+                created.getVisitor().getName(),
+                sdf.format(created.getEntryTime())
         );
     }
     public GetVisit getVisit(Integer id) {

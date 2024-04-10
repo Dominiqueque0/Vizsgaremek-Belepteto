@@ -5,26 +5,32 @@ import java.util.Date;
 public class GetVisit {
     private Integer id;
     private Integer visitorId;
-    private Integer janitorId;
-    private String entryTime;
-    private String exitTime;
-    private Integer reasonId;
+    private String name;
 
-    public GetVisit(Integer id, Integer visitorId, Integer janitorId, String entryTime, String exitTime, Integer reasonId) {
-        this.id = id;
-        this.visitorId = visitorId;
-        this.janitorId = janitorId;
-        this.entryTime = entryTime;
-        this.exitTime = exitTime;
-        this.reasonId = reasonId;
+    public String getName() {
+        return name;
     }
 
-    public GetVisit(Integer id, Integer visitorId, Integer janitorId, String entryTime, Integer reasonId) {
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    private String entryTime;
+    private String exitTime;
+
+    public GetVisit(Integer id, Integer visitorId,String name, String entryTime, String exitTime) {
         this.id = id;
         this.visitorId = visitorId;
-        this.janitorId = janitorId;
+        this.name = name;
         this.entryTime = entryTime;
-        this.reasonId = reasonId;
+        this.exitTime = exitTime;
+    }
+
+    public GetVisit(Integer id, Integer visitorId,String name, String entryTime) {
+        this.id = id;
+        this.visitorId = visitorId;
+        this.name = name;
+        this.entryTime = entryTime;
     }
 
     public GetVisit() {
@@ -46,14 +52,6 @@ public class GetVisit {
         this.visitorId = visitorId;
     }
 
-    public Integer getJanitorId() {
-        return janitorId;
-    }
-
-    public void setJanitorId(Integer janitorId) {
-        this.janitorId = janitorId;
-    }
-
     public String getEntryTime() {
         return entryTime;
     }
@@ -68,13 +66,5 @@ public class GetVisit {
 
     public void setExitTime(String exitTime) {
         this.exitTime = exitTime;
-    }
-
-    public Integer getReasonId() {
-        return reasonId;
-    }
-
-    public void setReasonId(Integer reasonId) {
-        this.reasonId = reasonId;
     }
 }

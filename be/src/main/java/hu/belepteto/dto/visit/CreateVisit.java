@@ -11,13 +11,9 @@ import java.util.Date;
 
 public class CreateVisit {
     private Integer visitorId;
-    private Integer janitorId;
-    private Integer reasonId;
 
-    public CreateVisit(Integer visitorId, Integer janitorId, Integer reasonId) {
+    public CreateVisit(Integer visitorId) {
         this.visitorId = visitorId;
-        this.janitorId = janitorId;
-        this.reasonId = reasonId;
     }
 
     public CreateVisit() {
@@ -31,19 +27,4 @@ public class CreateVisit {
         this.visitorId = visitorId;
     }
 
-    public Integer getJanitorId() {
-        return janitorId;
-    }
-
-    public void setJanitorId(Integer janitorId) {
-        this.janitorId = janitorId;
-    }
-
-    public Integer getReasonId() {
-        return reasonId;
-    }
-
-    public void setReasonId(Integer reasonId) {
-        this.reasonId = reasonId;
-    }
 }
