@@ -17,3 +17,8 @@ button{
 .cellachoose:hover{
     background-color: rgb(83, 83, 83);
 }
+.modalBox{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

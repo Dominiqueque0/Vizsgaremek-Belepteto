@@ -45,4 +45,10 @@ public class VisitController {
     private GetVisit updateVisit(@PathVariable Integer id){
         return service.updateOneVisit(id);
     }
+
+    @DeleteMapping("/visit/all")
+    @Operation(summary = "Belépések nullázása", description = "Új nap kezdése")
+    private boolean deleteAllVisits(){
+        return service.deleteAllVisits();
+    };
 }

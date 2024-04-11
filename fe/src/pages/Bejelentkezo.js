@@ -3,48 +3,54 @@ import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import './Bejelentkezo.css';
 import axios from 'axios';
-import React, { useEffect, useState } from 'react'; 
-import { useNavigate } from 'react-router-dom'; 
+import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+
+/*---------------------------------------------------------------------------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------------------------------------------------------------------*/
+/*----------------------------------------------------------BEJELENTKEZES----------------------------------------------------------------*/
+/*---------------------------------------------------------------------------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------------------------------------------------------------------*/
 
 export default function Bejelentkezo() {
 
-    const [username, setUsername] = useState(''); 
-    const [password, setPassword] = useState(''); 
-    const [userType, setUserType] = useState(''); 
-    const [error, setError] = useState(''); 
-    const history = useNavigate(); 
+    const [username, setUsername] = useState('');
+    const [password, setPassword] = useState('');
+    const [userType, setUserType] = useState('');
+    const [error, setError] = useState('');
+    const history = useNavigate();
 
     const handleLogin = async () => {
-        try { 
-            if (!username || !password) { 
-                setError('Kérjük írja be a felhasználónevet és a jelszót is.'); 
-                return; 
-            } 
-  
-            const response = await axios.post('/user/login', { username, password, userType }); 
-            if(response.data.userType === "PORTAS"){
-                history('/portas'); 
+        try {
+            if (!username || !password) {
+                setError('Kérjük írja be a felhasználónevet és a jelszót is.');
+                return;
             }
-            if(response.data.userType === "ADMIN"){
-                history('/admin'); 
+
+            const response = await axios.post('/user/login', { username, password, userType });
+            if (response.data.userType === "PORTAS") {
+                history('/portas');
+            }
+            if (response.data.userType === "ADMIN") {
+                history('/admin');
             }
             localStorage.setItem('auth', response.data.userType);
             localStorage.setItem('token', 'Bearer ' + response.headers['jwt-token']);
-            console.log('Login successful :', localStorage.getItem('token')); 
+            console.log('Login successful :', localStorage.getItem('token'), localStorage.getItem('auth'));
             axios.defaults.headers.common['Authorization'] = localStorage.getItem('token');
-        } catch (error) { 
-            console.error('Login failed:', error.response ? error.response.data : error.message); 
-            setError('Nem jó a felhasználónév vagy jelszó!'); 
-        } 
+        } catch (error) {
+            console.error('Login failed:', error.response ? error.response.data : error.message);
+            setError('Nem jó a felhasználónév vagy jelszó!');
+        }
     }
 
     const [items, setItems] = useState([]);
 
     useEffect(() => {
-      localStorage.getItem('token');
+        localStorage.getItem('token');
     }, [items]);
 
-    
+
     return (
         <>
             <div className="inputs">
@@ -72,11 +78,11 @@ export default function Bejelentkezo() {
                     value={username}
                     onChange={(e) => setUsername(e.target.value)}
                     sx={{
-                        color:'white',
-                        bgcolor:'white',
-                        borderRadius:2,
-                        borderColor:'white',
-                        border:'3px'
+                        color: 'white',
+                        bgcolor: 'white',
+                        borderRadius: 2,
+                        borderColor: 'white',
+                        border: '3px'
                     }}
                 />
                 <TextField
@@ -84,20 +90,20 @@ export default function Bejelentkezo() {
                     label="Jelszó"
                     type="password"
                     autoComplete="current-password"
-                    value={password} 
+                    value={password}
                     onChange={(e) => setPassword(e.target.value)}
                     sx={{
-                        color:'white',
-                        bgcolor:'white',
-                        borderRadius:2,
-                        borderColor:'white',
-                        border:'3px'
+                        color: 'white',
+                        bgcolor: 'white',
+                        borderRadius: 2,
+                        borderColor: 'white',
+                        border: '3px'
                     }}
                 />
                 {error && <p className="text-danger"
                 >{error}</p>}
                 <Button
-                    sx={{ my: 2, color: 'white', display: 'block' , bgcolor: 'blue'}}
+                    sx={{ my: 2, color: 'white', display: 'block', bgcolor: 'blue' }}
                     onClick={handleLogin}
                 >
                     Belépés

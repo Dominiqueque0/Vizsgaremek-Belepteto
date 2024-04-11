@@ -1,6 +1,4 @@
-import {TeljesTablaPortas} from '../components/table/Table';
-import {BelepoTablaPortas} from '../components/table/Table';
-import {AppBarPortas} from '../components/navbar/Navbar';
+import {TablaPortas} from '../components/table/Table';
 import { useNavigate } from 'react-router-dom';
 import {useEffect} from 'react'
 
@@ -13,26 +11,17 @@ import {useEffect} from 'react'
 
 
 export default function Portas(){
+  console.log(localStorage.getItem('auth'));
   const history = useNavigate(); 
   useEffect(() => {
     if(localStorage.getItem('token') === null){
       history('/')
     }
-    if(localStorage.getItem('auth') !== "ADMIN"){
-      history('/portas')
+    if(localStorage.getItem('auth') !== "PORTAS"){
+      history('/admin')
     }
-  },[])
+  }, [])
 return (<>
-<AppBarPortas></AppBarPortas>
-<div className="container">
-  <div className='jobbtabla'>
-    <TeljesTablaPortas></TeljesTablaPortas>
-  </div>
-</div>
-<div className='container2'>
-<div className='kozeptabla'>
-    <BelepoTablaPortas className="tabla"></BelepoTablaPortas>
-  </div>
-</div>
+<TablaPortas></TablaPortas>
 </>)
 }

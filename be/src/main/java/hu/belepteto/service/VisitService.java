@@ -85,4 +85,8 @@ public class VisitService {
         repository.deleteById(id);
         return true;
     }
+    public boolean deleteAllVisits() {
+        repository.deleteAll();
+        return true;
+    }
 }

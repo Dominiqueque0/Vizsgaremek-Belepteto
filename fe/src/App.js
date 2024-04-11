@@ -6,12 +6,11 @@ import React, { useEffect } from 'react';
 import { Route } from 'react-router-dom';
 import { Routes } from 'react-router-dom';
 import { BrowserRouter as Router } from 'react-router-dom';
-import { useNavigate } from 'react-router-dom';
 
 
 
 function App() {
-  
+
 
   return (
     <>
