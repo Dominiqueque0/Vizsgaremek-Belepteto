@@ -18,6 +18,7 @@ public class ExceptionHandling implements ErrorController {
     private static final String INCORRECT_CREDENTIALS = "Username / password incorrect. Please try again";
 
     private static final String NOT_ENOUGH_PERMISSION = "You do not have enough permission";
+    private static final String VISITOR_ALREADY_IN = "A személy már belépett.";
 
     private ResponseEntity<ExceptionResponse> createHttpResponse(HttpStatus httpStatus, String message) {
         return new ResponseEntity<>(new ExceptionResponse(httpStatus.value(), httpStatus,
@@ -41,6 +42,11 @@ public class ExceptionHandling implements ErrorController {
     @ExceptionHandler(TokenExpiredException.class)
     public ResponseEntity<ExceptionResponse> tokenExpiredException(TokenExpiredException exception) {
         return createHttpResponse(UNAUTHORIZED, exception.getMessage());
+    }
+
+    @ExceptionHandler(VisitorAlreadyInException.class)
+    public ResponseEntity<ExceptionResponse> visitorAlreadyInException(VisitorAlreadyInException exception){
+        return createHttpResponse(BAD_REQUEST, exception.getMessage());
     }
 
 }

@@ -4,6 +4,7 @@ import hu.belepteto.converter.VisitConverter;
 import hu.belepteto.dto.visit.CreateVisit;
 import hu.belepteto.dto.visit.GetVisit;
 import hu.belepteto.dto.visit.UpdateOneVisit;
+import hu.belepteto.exception.VisitorAlreadyInException;
 import hu.belepteto.model.Reason;
 import hu.belepteto.model.Users;
 import hu.belepteto.model.Visit;
@@ -32,7 +33,6 @@ public class VisitService {
     private UserRepository userRepository;
 
     public GetVisit createVisit(CreateVisit createVisit) {
-        System.out.println("hello");
         Visit visit = new Visit();
         Visitor visitor = visitorRepository.getReferenceById(createVisit.getVisitorId());
         visit.setVisitor(visitor);

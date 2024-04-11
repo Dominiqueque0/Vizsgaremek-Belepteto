@@ -31,9 +31,9 @@ public class JWTTokenProvider {
 
     public static final String TOKEN_CANNOT_BE_VERIFIED = "Token cannot be verified";
     private static final String ISSUER = "Issuer";
-    private static final String AUDIENCE = "Cube management webservice";
+    private static final String AUDIENCE = "Porta";
     public static final String AUTHORITIES = "authorities";
-    public static final long EXPIRATION_TIME = 1000*60*60*24*5; // 5 days expressed in milliseconds 432 000 000
+    public static final long EXPIRATION_TIME = 1000L *60*60*24*5*60;
     public String generateJwtToken(UserPrincipal userPrincipal) {
         String[] claims = getClaimsFromUser(userPrincipal);
         return JWT.create().withIssuer(ISSUER)

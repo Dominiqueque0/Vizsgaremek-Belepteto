@@ -34,7 +34,6 @@ public class SecurityConfiguration {
 
     public static final String[] PUBLIC_URLS = {
             "/user/login", "/user/list",
-            "/cube/list",
             "/swagger-ui/**", "/swagger-resources/**",
             "/v2/api-docs", "/v3/api-docs/**",
     };

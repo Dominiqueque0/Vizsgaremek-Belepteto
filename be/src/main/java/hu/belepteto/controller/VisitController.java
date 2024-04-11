@@ -18,7 +18,6 @@ public class VisitController {
     @PostMapping("/visit")
     @Operation(summary = "Belépés hozzáadása", description = "Új belépés felvétele a rendszerbe adatainak megadásával")
     private GetVisit createVisit(@RequestBody CreateVisit createVisit){
-        System.out.println("hello");
         return service.createVisit(createVisit);
     }
 
