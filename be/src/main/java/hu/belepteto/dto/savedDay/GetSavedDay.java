@@ -6,13 +6,13 @@ import java.util.Date;
 
 public class GetSavedDay {
     private Integer id;
-    private String date;
+    private Date date;
     private Visit visitId;
 
     public GetSavedDay() {
     }
 
-    public GetSavedDay(Integer id, String date, Visit visitId) {
+    public GetSavedDay(Integer id, Date date, Visit visitId) {
         this.id = id;
         this.date = date;
         this.visitId = visitId;
@@ -26,11 +26,11 @@ public class GetSavedDay {
         this.id = id;
     }
 
-    public String getDate() {
+    public Date getDate() {
         return date;
     }
 
-    public void setDate(String date) {
+    public void setDate(Date date) {
         this.date = date;
     }
 

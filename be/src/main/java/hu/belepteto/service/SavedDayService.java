@@ -15,6 +15,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class SavedDayService {
@@ -25,12 +26,17 @@ public class SavedDayService {
     private VisitRepository visitRepository;
     SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
 
+
     public List<GetSavedDay> createSavedDay() {
         List<GetSavedDay> getSavedDayList = new ArrayList<>();
         List<Visit> savedDayList = visitRepository.findAll();
         for (Visit visit : savedDayList) {
             getSavedDayList.add(SavedDayConverter.convertModelToGet(visit));
         }
+        List<SavedDay> savedDayEntities = getSavedDayList.stream()
+                .map(SavedDayConverter::convertGetToModel)
+                .collect(Collectors.toList());
+        repository.saveAll(savedDayEntities);
         return getSavedDayList;
     }
 

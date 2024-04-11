@@ -8,6 +8,6 @@ import java.util.Date;
 import java.util.List;
 
 public interface SavedDayRepository extends JpaRepository<SavedDay, Integer>{
-    @Query(value = "SELECT * FROM saved_day WHERE savedate LIKE '2024*'", nativeQuery = true)
+    @Query(value = "SELECT * FROM saved_day WHERE DATE(savedate) = DATE(?1)", nativeQuery = true)
     List<SavedDay> findByEntryTime(Date date);
 }

@@ -10,7 +10,7 @@ public class SavedDay {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @ManyToOne
+    @OneToOne
     @JoinColumn(name = "visit_id")
     private Visit visit;
 
