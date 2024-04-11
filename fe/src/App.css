@@ -1,0 +1,29 @@
+.container{
+    position: relative;
+    display: flex;
+    justify-content: flex-end;
+}
+.jobbtabla{
+    position: absolute;
+    width: 25%;
+    margin: 20px;
+}
+.container2{
+    position: relative;
+    display: flex;
+    justify-content: flex-start;
+}
+.kozeptabla{
+    display: flex;
+    position: absolute;
+    width: 70%;
+    margin: 20px;
+}
+.jobbtablafeher{
+    position: absolute;
+    width: 25%;
+    margin: 20px;
+    background-color: white;
+    border-radius: 10px;
+    border-color: goldenrod;
+}

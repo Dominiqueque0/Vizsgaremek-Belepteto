@@ -1,0 +1,31 @@
+.cella{
+    background-color: grey;
+    width: auto;
+    
+}
+.cellaHead{
+    width: auto;
+}
+.cellachoose{
+    background-color: grey;
+    width: auto;
+    cursor: pointer;
+}
+button{
+    background-color: rgb(56, 56, 56);
+}
+.cellachoose:hover{
+    background-color: rgb(83, 83, 83);
+}
+.modalBox{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+}
+.mentes{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 40px;
+}
