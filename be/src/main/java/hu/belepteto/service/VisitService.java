@@ -88,11 +88,9 @@ public class VisitService {
         return true;
     }
 
-    public boolean deleteAllVisits(Date date) {
-        List<Visit> visitsToDelete = repository.findByEntryTime(date);
-
+    public boolean deleteAllVisits() {
+        List<Visit> visitsToDelete = repository.findAll();
         repository.deleteAll(visitsToDelete);
-
         return true;
     }
 }

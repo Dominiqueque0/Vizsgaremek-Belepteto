@@ -46,9 +46,9 @@ public class VisitController {
         return service.updateOneVisit(id);
     }
 
-    @DeleteMapping("/visit/delete/{date}")
+    @DeleteMapping("/visit/all")
     @Operation(summary = "Belépések nullázása", description = "Új nap kezdése")
-    private boolean deleteAllVisits(@RequestBody Date date){
-        return service.deleteAllVisits(date);
+    private boolean deleteAllVisits(){
+        return service.deleteAllVisits();
     };
 }

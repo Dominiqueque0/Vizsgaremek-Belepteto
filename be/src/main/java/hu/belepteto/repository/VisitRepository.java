@@ -13,11 +13,4 @@ import java.util.List;
 
 public interface VisitRepository extends JpaRepository<Visit, Integer> {
 
-    @Transactional
-    @Modifying
-    @Query(value = "DELETE FROM Visit v WHERE DATE(v.entryTime) = DATE(:date)")
-    void deleteByEntryTime(@Param("date") Date date);
-
-    @Query(value = "SELECT * FROM visit WHERE DATE(entry_time) = DATE(:date)", nativeQuery = true)
-    List<Visit> findByEntryTime(@Param("date") Date date);
 }
