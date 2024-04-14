@@ -31,6 +31,7 @@ public class SavedDayService {
         List<GetSavedDay> getSavedDayList = new ArrayList<>();
         List<Visit> savedDayList = visitRepository.findAll();
         for (Visit visit : savedDayList) {
+            visit.getVisitor().setCheckedIn(false);
             getSavedDayList.add(SavedDayConverter.convertModelToGet(visit));
         }
         List<SavedDay> savedDayEntities = getSavedDayList.stream()
