@@ -18,7 +18,7 @@ export default function Portas() {
     if (localStorage.getItem('auth') !== "ADMIN") {
       history('/portas')
     }
-  }, [])
+  })
   return (<>
     <TablaAdmin></TablaAdmin>
   </>)

@@ -25,6 +25,8 @@ import { useNavigate } from 'react-router-dom';
 import { LocalizationProvider } from '@mui/x-date-pickers-pro';
 import { AdapterDayjs } from '@mui/x-date-pickers-pro/AdapterDayjs';
 import { DateCalendar } from '@mui/x-date-pickers/DateCalendar';
+import { useEffect, useState } from "react";
+import dayjs from "dayjs";
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
     [`&.${tableCellClasses.head}`]: {
@@ -47,6 +49,12 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 }));
 
 export default function PrevData() {
+    function formatTime(timeString) {
+        if (!timeString) return "N/A";
+
+        const time = new Date(timeString);
+        return time.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+    }
 
     React.useEffect(() => {
         if (localStorage.getItem('token') === null) {
@@ -95,14 +103,19 @@ export default function PrevData() {
         }
     };
 
-    React.useEffect(() => {
-        axios.post(`/saved/list`, null, { headers: { Authorization: localStorage.getItem('token') } }).then((response) => {
+
+    const [date, setDate] = useState(dayjs())
+
+
+
+    useEffect(() => {
+        axios.post(`/savedDay`, date, { headers: { Authorization: localStorage.getItem('token') } }).then((response) => {
             let tempSaved = Object.values(response.data);
             setSaved(tempSaved);
-        }).catch((error) => { });
-    }, [saved]);
-
-
+        }).catch((error) => {
+            alert(error);
+        });
+    }, [date]);
 
     return (
         <>
@@ -114,7 +127,7 @@ export default function PrevData() {
                             variant="h6"
                             noWrap
                             component="a"
-                            href="#app-bar-with-responsive-menu"
+                            href=""
                             sx={{
                                 mr: 2,
                                 display: { xs: 'none', md: 'flex' },
@@ -232,8 +245,8 @@ export default function PrevData() {
                                 <TableRow>
                                     <StyledTableCell className='cellaHead' align='center'>Id</StyledTableCell>
                                     <StyledTableCell className='cellaHead' align="center">Név</StyledTableCell>
-                                    <StyledTableCell className='cellaHead' align="center">Típus</StyledTableCell>
-                                    <StyledTableCell className='cellaHead' align="center">Személyi Szám</StyledTableCell>
+                                    <StyledTableCell className='cellaHead' align="center">Belepés ideje</StyledTableCell>
+                                    <StyledTableCell className='cellaHead' align="center">Kilépés ideje</StyledTableCell>
                                 </TableRow>
                             </TableHead>
                             <TableBody>
@@ -242,9 +255,9 @@ export default function PrevData() {
                                         <StyledTableCell component="th" scope="row" className='cella' align='center'>
                                             {row.id}
                                         </StyledTableCell>
-                                        <StyledTableCell className='cellachoose' align="center">{row.name}</StyledTableCell>
-                                        <StyledTableCell className='cella' align="center">{row.visitorType}</StyledTableCell>
-                                        <StyledTableCell className='cella' align="center">{row.idNumber}</StyledTableCell>
+                                        <StyledTableCell className='cella' align="center">{row.name}</StyledTableCell>
+                                        <StyledTableCell className='cella' align="center">{formatTime(row.entryTime)}</StyledTableCell>
+                                        <StyledTableCell className='cella' align="center">{formatTime(row.exitTime)}</StyledTableCell>
                                     </StyledTableRow>
                                 ))}
                             </TableBody>
@@ -256,7 +269,9 @@ export default function PrevData() {
             <div className="container">
                 <div className='jobbtablafeher'>
                     <LocalizationProvider dateAdapter={AdapterDayjs}>
-                        <DateCalendar />
+                        <DateCalendar
+                            value={date}
+                            onChange={(newDate) => setDate(newDate)} />
                     </LocalizationProvider>
                 </div>
             </div>

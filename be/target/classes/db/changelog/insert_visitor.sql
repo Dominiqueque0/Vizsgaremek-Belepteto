@@ -1,14 +1,12 @@
 INSERT INTO visitor (name, type_id, id_number, checked_in) VALUES
-('Orbn Viktr', 'VENDEG', '7355608', false),
-('Puskas Ferec', 'DOLGOZO', '123123123', false),
 ('Nagy Kálmán', 'DOLGOZO', '123456789', false),
-('Kovács Ágnes', 'DOLGOZO', '987654321', false),
+('Kovács Ágnes', 'VENDEG', '987654321', false),
 ('Szabó János', 'DOLGOZO', '654321987', false),
 ('Varga Eszter', 'DOLGOZO', '159753456', false),
 ('Tóth Gábor', 'DOLGOZO', '951753852', false),
 ('Kiss Judit', 'DOLGOZO', '357951753', false),
 ('Molnár Péter', 'DOLGOZO', '852369741', false),
-('Fekete László', 'DOLGOZO', '741258963', false),
+('Fekete László', 'VENDEG', '741258963', false),
 ('Szűcs Katalin', 'DOLGOZO', '369852147', false),
 ('Horváth Ferenc', 'DOLGOZO', '147258369', false),
 ('Balogh Marianna', 'DOLGOZO', '586942751', false),
@@ -20,5 +18,5 @@ INSERT INTO visitor (name, type_id, id_number, checked_in) VALUES
 ('Vass Anikó', 'DOLGOZO', '654123987', false),
 ('Pataki Márk', 'DOLGOZO', '123987654', false),
 ('Győrffi Ibolya', 'DOLGOZO', '789654321', false),
-('Bakos Lajos', 'DOLGOZO', '456321789', false);
+('Bakos Lajos', 'VENDEG', '456321789', false);
 

@@ -35,7 +35,6 @@ import Fab from '@mui/material/Fab';
 import CheckIcon from '@mui/icons-material/Check';
 import SaveIcon from '@mui/icons-material/Save';
 
-
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
     backgroundColor: theme.palette.common.black,
@@ -104,11 +103,19 @@ export function TablaPortas() {
         setLoading(false);
       }, 2000);
     }
-    /*axios.post(`/saved`, visit, { headers: { Authorization: localStorage.getItem('token') } }).then((response) => {
+    axios.post(`/savedDay/create`, null, { headers: { Authorization: localStorage.getItem('token') } }).then((response) => {
       setSave(save.concat([response.data]));
-    })*/
-    history('/savedtables')
+    }).catch((error) => {
+      alert(error);
+    });
+    deleteAllVisit();
   };
+
+  const deleteAllVisit = () => {
+    axios.delete(`/visit/all`, { headers: { Authorization: localStorage.getItem('token') } }).catch((error) => {
+      alert(error);
+    });
+  }
 
 
   const style = {
@@ -175,11 +182,25 @@ export function TablaPortas() {
   function felvetel() {
     axios.post(`/visitor`, felvettData, { headers: { Authorization: localStorage.getItem('token') } }).then((response) => {
       setPerson(person.concat([response.data]));
-    })
+    }).catch((error) => {
+      alert(error);
+    });
   }
+
+  const [error, setError] = useState('');
   const felvesz = function () {
-    setOpen(false);
-    felvetel();
+    try {
+      if (!felvettData.name || felvettData.idNumber === null || felvettData.idNumber.length < 10) {
+        setError('Kérjük írja be a nevet és a személyi számot (minimum 10 karakter).');
+        return;
+      } else {
+        setError('');
+        felvetel();
+        setOpen(false);
+      }
+    } catch (error) {
+      alert(error)
+    }
   }
 
   const handleSelect = (event) => {
@@ -203,25 +224,57 @@ export function TablaPortas() {
   let [visitor, setVisitor] = React.useState([]);
   let [change, setChange] = React.useState([]);
   let [deletedVisit, setDeleted] = React.useState([]);
+
+  const reverseVisitList = async () => {
+    const response = await axios.post(`/visit/list`, null, { headers: { Authorization: localStorage.getItem('token') } }).catch((error) => {
+      alert(error);
+    });;
+    const reversedList = response.data.reverse();
+    setVisit(reversedList);
+  };
   React.useEffect(() => {
-    axios.post(`/visit/list`, null, { headers: { Authorization: localStorage.getItem('token') } }).then((response) => {
-      let tempVisit = Object.values(response.data);
-      setVisit(tempVisit);
-    });
-  }, [deletedVisit, change]);
+    reverseVisitList();
+  });
+
 
   function kilep(id) {
     axios.patch(`/visit/${id}`, id, { headers: { Authorization: localStorage.getItem('token') } }).then((response) => {
-    }).catch((error) => { })
-    let button = document.getElementById(id);
-    button.disabled = true;
+    }).catch((error) => {
+      alert(error);
+    });
     setDeleted(deletedVisit.concat([id]));
   }
+
+  /*----------------------------*/
+
+  const btns = document.querySelectorAll('.btn');
+
+  const getBtnState = function (btns) {
+    [].forEach.call(btns, function (btn) {
+      if (window.localStorage.getItem(btn.id) === 'disabled') {
+        btn.disabled = true
+      }
+    });
+  };
+
+  [].forEach.call(btns, function (btn) {
+    btn.addEventListener('click', function (e) {
+      btn.disabled = true
+      window.localStorage.setItem(btn.id, 'disabled')
+    })
+  });
+
+  getBtnState(btns);
+
+  /*----------------------------*/
 
   function belep(id) {
     axios.post(`/visit`, { visitorId: id }, { headers: { Authorization: localStorage.getItem("token") } }).then((response) => {
       setVisit(visit.concat(response.data))
-    }).catch((error) => { });
+      localStorage.getItem('disabledButton')
+    }).catch((error) => {
+      alert("Ez a személy már belépett, de még nem lépett ki");
+    });
     setChange(change.concat(id))
   }
 
@@ -229,8 +282,15 @@ export function TablaPortas() {
     axios.post(`/visitor/list`, null, { headers: { Authorization: localStorage.getItem('token') } }).then((response) => {
       let tempVisitor = Object.values(response.data);
       setVisitor(tempVisitor);
-    }).catch((error) => { });
+    }).catch((error) => {
+      alert(error);
+    });
   }, [visitor]);
+
+
+  const navigate = () => {
+    history('/savedtables')
+  }
 
   return (
     <>
@@ -249,7 +309,7 @@ export function TablaPortas() {
               variant="h6"
               noWrap
               component="a"
-              href="#app-bar-with-responsive-menu"
+              href=""
               sx={{
                 mr: 2,
                 display: { xs: 'none', md: 'flex' },
@@ -304,7 +364,7 @@ export function TablaPortas() {
               variant="h5"
               noWrap
               component="a"
-              href="#app-bar-with-responsive-menu"
+              href=""
               sx={{
                 mr: 2,
                 display: { xs: 'flex', md: 'none' },
@@ -316,13 +376,18 @@ export function TablaPortas() {
                 textDecoration: 'none',
               }}
             >
-              LOGO
+              PORTÁS
             </Typography>
             <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
               <Button
                 sx={{ my: 2, color: 'white', display: 'block' }} onClick={handleOpen}
               >
                 Felvétel
+              </Button>
+              <Button
+                sx={{ my: 2, color: 'white', display: 'block' }} onClick={navigate}
+              >
+                Mentett táblák
               </Button>
             </Box>
 
@@ -401,6 +466,8 @@ export function TablaPortas() {
                 name='idNumber'
                 onChange={handleSelect}
               />
+              <br />
+              {error && <p>{error}</p>}
               <br />
               <Button onClick={bez} sx={{ mt: 2 }}>Bezárás</Button>
               <Button onClick={felvesz} sx={{ mt: 2 }}>Felvétel</Button>
@@ -495,7 +562,7 @@ export function TablaPortas() {
                     <StyledTableCell className='cella' align="center">{row.name}</StyledTableCell>
                     <StyledTableCell className='cella' align="center">{row.entryTime}</StyledTableCell>
                     <StyledTableCell className='cella' align="center" id='exitTime'>{row.exitTime}</StyledTableCell>
-                    <StyledTableCell className='cella' align="center"><button id={row.id} onClick={() => { kilep(row.id) }}>Kilépés rögzítése</button></StyledTableCell>
+                    <StyledTableCell className='cella' align="center"><button id={row.id} className='btn' onClick={() => { kilep(row.id) }}>Kilépés rögzítése</button></StyledTableCell>
                   </StyledTableRow>
                 ))}
               </TableBody>
@@ -541,6 +608,7 @@ export function TablaAdmin() {
     };
   }, []);
 
+
   const handleButtonClick = () => {
     if (!loading) {
       setSuccess(false);
@@ -550,11 +618,21 @@ export function TablaAdmin() {
         setLoading(false);
       }, 2000);
     }
-    /*axios.post(`/saved`, visit, { headers: { Authorization: localStorage.getItem('token') } }).then((response) => {
+    axios.post(`/savedDay/create`, null, { headers: { Authorization: localStorage.getItem('token') } }).then((response) => {
       setSave(save.concat([response.data]));
-    })*/
-    history('/savedtables')
+      console.log(response.data)
+    }).catch((error) => {
+      alert(error);
+    });
+    deleteAllVisit();
   };
+
+  const deleteAllVisit = () => {
+    axios.delete(`/visit/all`, { headers: { Authorization: localStorage.getItem('token') } }).catch((error) => {
+      alert(error);
+    });
+  }
+
 
 
   const style = {
@@ -621,13 +699,28 @@ export function TablaAdmin() {
   function felvetel() {
     axios.post(`/visitor`, felvettData, { headers: { Authorization: localStorage.getItem('token') } }).then((response) => {
       setPerson(person.concat([response.data]));
-    })
+    }).catch((error) => {
+      alert(error);
+    });
   }
+  const [error, setError] = useState('');
   const felvesz = function () {
-    setOpen(false);
-    felvetel();
+    try {
+      if (!felvettData.name) {
+        if (!felvettData.idNumber) {
+          if (felvettData.idNumber.size < 10) {
+            setError('Kérjük írja be a nevet és a személyi számot(10).');
+            return;
+          }
+        }
+      } else {
+        setOpen(false);
+        felvetel();
+      }
+    } catch (error) {
+      alert(error)
+    }
   }
-
   const handleSelect = (event) => {
     setFelvettData((prevData) => ({
       ...prevData,
@@ -650,17 +743,42 @@ export function TablaAdmin() {
   let [change, setChange] = React.useState([]);
   let [deletedVisit, setDeleted] = React.useState([]);
   function deletePerson(id) {
-    axios.delete(`/visitor/${id}`, { headers: { Authorization: localStorage.getItem("token") } }).catch();
+    axios.delete(`/visitor/${id}`, { headers: { Authorization: localStorage.getItem("token") } }).catch((error) => {
+      alert(error);
+    });
     setVisitor(visitor.filter(item => item.id !== id));
   }
   function deleteVisit(id) {
-    axios.delete(`/visit/${id}`, { headers: { Authorization: localStorage.getItem("token") } }).catch();
+    axios.delete(`/visit/${id}`, { headers: { Authorization: localStorage.getItem("token") } }).catch((error) => {
+      alert(error);
+    });
     setVisit(visit.filter(item => item.id !== id));
   }
+
+  const btns = document.querySelectorAll('.btn');
+
+  const getBtnState = function (btns) {
+    [].forEach.call(btns, function (btn) {
+      if (window.localStorage.getItem(btn.id) === 'disabled') {
+        btn.disabled = true
+      }
+    });
+  };
+
+  [].forEach.call(btns, function (btn) {
+    btn.addEventListener('click', function (e) {
+      btn.disabled = true
+      window.localStorage.setItem(btn.id, 'disabled')
+    })
+  });
+
+  getBtnState(btns);
 
   function belep(id) {
     axios.post(`/visit`, { visitorId: id }, { headers: { Authorization: localStorage.getItem("token") } }).then((response) => {
       setVisit(visit.concat(response.data))
+    }).catch((error) => {
+      alert("Ez a személy már belépett, de még nem lépett ki");
     });
     setChange(change.concat(id))
   }
@@ -669,23 +787,35 @@ export function TablaAdmin() {
     axios.post(`/visitor/list`, null, { headers: { Authorization: localStorage.getItem('token') } }).then((response) => {
       let tempVisitor = Object.values(response.data);
       setVisitor(tempVisitor);
+    }).catch((error) => {
+      alert(error);
     });
   }, [person]);
 
-  React.useEffect(() => {
-    axios.post(`/visit/list`, null, { headers: { Authorization: localStorage.getItem('token') } }).then((response) => {
-      let tempVisit = Object.values(response.data);
-      setVisit(tempVisit);
+  const reverseVisitList = async () => {
+    const response = await axios.post(`/visit/list`, null, { headers: { Authorization: localStorage.getItem('token') } }).catch((error) => {
+      alert(error);
     });
-  }, [deletedVisit, change]);
+    const reversedList = response.data.reverse();
+    setVisit(reversedList);
+  };
+  React.useEffect(() => {
+    reverseVisitList();
+  });
 
 
   function kilep(id) {
     axios.patch(`/visit/${id}`, id, { headers: { Authorization: localStorage.getItem('token') } }).then((response) => {
+    }).catch((error) => {
+      alert(error);
     });
     let button = document.getElementById(id);
     button.disabled = true;
     setDeleted(deletedVisit.concat([id]))
+  }
+
+  const navigate = () => {
+    history('/savedtables')
   }
   return (
     <>
@@ -703,7 +833,7 @@ export function TablaAdmin() {
               variant="h6"
               noWrap
               component="a"
-              href="#app-bar-with-responsive-menu"
+              href=""
               sx={{
                 mr: 2,
                 display: { xs: 'none', md: 'flex' },
@@ -758,7 +888,7 @@ export function TablaAdmin() {
               variant="h5"
               noWrap
               component="a"
-              href="#app-bar-with-responsive-menu"
+              href=""
               sx={{
                 mr: 2,
                 display: { xs: 'flex', md: 'none' },
@@ -770,13 +900,18 @@ export function TablaAdmin() {
                 textDecoration: 'none',
               }}
             >
-              LOGO
+              ADMIN
             </Typography>
             <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
               <Button
                 sx={{ my: 2, color: 'white', display: 'block' }} onClick={handleOpen}
               >
                 Felvétel
+              </Button>
+              <Button
+                sx={{ my: 2, color: 'white', display: 'block' }} onClick={navigate}
+              >
+                Mentett táblák
               </Button>
             </Box>
             <Box sx={{ flexGrow: 0 }}>
@@ -855,6 +990,8 @@ export function TablaAdmin() {
                 name='idNumber'
                 onChange={handleSelect}
               />
+              <br />
+              {error && <p>{error}</p>}
               <br />
               <Button onClick={bez} sx={{ mt: 2 }}>Bezárás</Button>
               <Button onClick={felvesz} sx={{ mt: 2 }}>Felvétel</Button>
@@ -955,7 +1092,7 @@ export function TablaAdmin() {
                     <StyledTableCell className='cella' align="center">{row.name}</StyledTableCell>
                     <StyledTableCell className='cella' align="center">{row.entryTime}</StyledTableCell>
                     <StyledTableCell className='cella' align="center">{row.exitTime}</StyledTableCell>
-                    <StyledTableCell className='cella' align="center"><button id={row.id} onClick={() => { kilep(row.id) }} disabled={false}>Kilépés rögzítése</button></StyledTableCell>
+                    <StyledTableCell className='cella' align="center"><button id={row.id} className='btn' onClick={() => { kilep(row.id) }}>Kilépés rögzítése</button></StyledTableCell>
                     <StyledTableCell align="center" className='cellachoose' onClick={() => { deleteVisit(row.id) }}><Grid item xs={8}><DeleteIcon /></Grid></StyledTableCell>
                   </StyledTableRow>
                 ))}
