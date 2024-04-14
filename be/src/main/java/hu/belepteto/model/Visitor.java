@@ -14,15 +14,17 @@ public class Visitor {
     private VisitorType visitorType;
 
     private String idNumber;
+    private boolean checkedIn;
 
-    public Visitor(Integer id, String name, VisitorType visitorType, String idNumber) {
+    public Visitor() {
+    }
+
+    public Visitor(Integer id, String name, VisitorType visitorType, String idNumber, boolean checkedIn) {
         this.id = id;
         this.name = name;
         this.visitorType = visitorType;
         this.idNumber = idNumber;
-    }
-
-    public Visitor() {
+        this.checkedIn = checkedIn;
     }
 
     public Integer getId() {
@@ -55,5 +57,13 @@ public class Visitor {
 
     public void setIdNumber(String idNumber) {
         this.idNumber = idNumber;
+    }
+
+    public boolean isCheckedIn() {
+        return checkedIn;
+    }
+
+    public void setCheckedIn(boolean checkedIn) {
+        this.checkedIn = checkedIn;
     }
 }

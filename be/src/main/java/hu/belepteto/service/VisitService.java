@@ -39,6 +39,10 @@ public class VisitService {
         Visitor visitor = visitorRepository.getReferenceById(createVisit.getVisitorId());
         visit.setVisitor(visitor);
         visit.setEntryTime(new Date());
+        if(visit.getVisitor().isCheckedIn()){
+            throw new VisitorAlreadyInException("A személy már belépett.");
+        }
+        visit.getVisitor().setCheckedIn(true);
         Visit created = repository.save(visit);
 
         SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss");
@@ -76,6 +80,7 @@ public class VisitService {
         UpdateOneVisit updateOneVisit = new UpdateOneVisit();
         updateOneVisit.setExitTime(new Date());
         visit.setExitTime(updateOneVisit.getExitTime());
+        visit.getVisitor().setCheckedIn(false);
         Visit saved = repository.save(visit);
         GetVisit getVisit = VisitConverter.convertVisitToGet(saved);
         return getVisit;

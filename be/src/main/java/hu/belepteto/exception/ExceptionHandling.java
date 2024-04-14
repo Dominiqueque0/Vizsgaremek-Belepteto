@@ -18,7 +18,6 @@ public class ExceptionHandling implements ErrorController {
     private static final String INCORRECT_CREDENTIALS = "Username / password incorrect. Please try again";
 
     private static final String NOT_ENOUGH_PERMISSION = "You do not have enough permission";
-    private static final String VISITOR_ALREADY_IN = "A személy már belépett.";
 
     private ResponseEntity<ExceptionResponse> createHttpResponse(HttpStatus httpStatus, String message) {
         return new ResponseEntity<>(new ExceptionResponse(httpStatus.value(), httpStatus,

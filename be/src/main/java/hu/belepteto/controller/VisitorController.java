@@ -7,6 +7,7 @@ import hu.belepteto.dto.visitor.CreateVisitor;
 import hu.belepteto.dto.visitor.GetVisitor;
 import hu.belepteto.service.VisitorService;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@Tag(name = "Vendégek kezelése")
 public class VisitorController {
     @Autowired
     private VisitorService service;

@@ -12,7 +12,7 @@ public class VisitorConverter {
         getVisitor.setName(visitor.getName());
         getVisitor.setVisitorType(visitor.getVisitorType());
         getVisitor.setIdNumber(visitor.getIdNumber());
-
+        getVisitor.setCheckedIn(visitor.isCheckedIn());
         return getVisitor;
     }
 
@@ -22,6 +22,7 @@ public class VisitorConverter {
         visitor.setName(getVisitor.getName());
         visitor.setVisitorType(getVisitor.getVisitorType());
         visitor.setIdNumber(getVisitor.getIdNumber());
+        visitor.setCheckedIn(getVisitor.isCheckedIn());
         return visitor;
     }
 }

@@ -6,11 +6,21 @@ public class CreateVisitor {
     private String name;
     private VisitorType visitorType;
     private String idNumber;
+    private boolean checkedIn;
 
-    public CreateVisitor(String name, VisitorType visitorType, String idNumber) {
+    public boolean isCheckedIn() {
+        return checkedIn;
+    }
+
+    public void setCheckedIn(boolean checkedIn) {
+        this.checkedIn = checkedIn;
+    }
+
+    public CreateVisitor(String name, VisitorType visitorType, String idNumber, boolean checkedIn) {
         this.name = name;
         this.visitorType = visitorType;
         this.idNumber = idNumber;
+        this.checkedIn = checkedIn;
     }
 
     public CreateVisitor() {

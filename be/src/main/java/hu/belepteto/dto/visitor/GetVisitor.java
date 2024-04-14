@@ -8,12 +8,22 @@ public class GetVisitor {
     private String name;
     private VisitorType visitorType;
     private String idNumber;
+    private boolean checkedIn;
 
-    public GetVisitor(Integer id, String name, VisitorType visitorType, String idNumber) {
+    public boolean isCheckedIn() {
+        return checkedIn;
+    }
+
+    public void setCheckedIn(boolean checkedIn) {
+        this.checkedIn = checkedIn;
+    }
+
+    public GetVisitor(Integer id, String name, VisitorType visitorType, String idNumber, boolean checkedIn) {
         this.id = id;
         this.name = name;
         this.visitorType = visitorType;
         this.idNumber = idNumber;
+        this.checkedIn = checkedIn;
     }
 
     public GetVisitor() {

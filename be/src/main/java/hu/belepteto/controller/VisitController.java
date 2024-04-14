@@ -5,6 +5,7 @@ import hu.belepteto.dto.visit.GetVisit;
 import hu.belepteto.dto.visit.UpdateOneVisit;
 import hu.belepteto.service.VisitService;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -12,6 +13,7 @@ import java.util.Date;
 import java.util.List;
 
 @RestController
+@Tag(name = "Belépések kezelése")
 public class VisitController {
     @Autowired
     private VisitService service;

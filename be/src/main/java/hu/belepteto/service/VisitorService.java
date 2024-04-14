@@ -36,6 +36,7 @@ public class VisitorService {
         visitor.setVisitorType(createVisitor.getVisitorType());
         visitor.setName(createVisitor.getName());
         visitor.setIdNumber(createVisitor.getIdNumber());
+        visitor.setCheckedIn(false);
 
         return VisitorConverter.convertVisitorToGet(repository.save(visitor));
         }
