@@ -29,19 +29,11 @@ import axios from 'axios';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Select } from '@mui/material';
-
-const style = {
-  position: 'absolute',
-  top: '50%',
-  left: '50%',
-  transform: 'translate(-50%, -50%)',
-  width: 400,
-  bgcolor: 'background.paper',
-  border: '2px solid #000',
-  boxShadow: 24,
-  p: 4,
-};
-
+import CircularProgress from '@mui/material/CircularProgress';
+import { green } from '@mui/material/colors';
+import Fab from '@mui/material/Fab';
+import CheckIcon from '@mui/icons-material/Check';
+import SaveIcon from '@mui/icons-material/Save';
 
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
@@ -77,11 +69,65 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 
 
 export function TablaPortas() {
-/*---------------------------------------------------------------------------------------------------------------------------------------*/
-/*---------------------------------------------------------------------------------------------------------------------------------------*/
-/*---------------------------------------------------------------NAVBAR------------------------------------------------------------------*/
-/*---------------------------------------------------------------------------------------------------------------------------------------*/
-/*---------------------------------------------------------------------------------------------------------------------------------------*/
+
+  /*---------------------------------------------------------------------------------------------------------------------------------------*/
+  /*---------------------------------------------------------------------------------------------------------------------------------------*/
+  /*---------------------------------------------------------------SAVE--------------------------------------------------------------------*/
+  /*---------------------------------------------------------------------------------------------------------------------------------------*/
+  /*---------------------------------------------------------------------------------------------------------------------------------------*/
+  const [loading, setLoading] = React.useState(false);
+  const [success, setSuccess] = React.useState(false);
+  const timer = React.useRef();
+  const [save, setSave] = React.useState([]);
+
+  const buttonSx = {
+    ...(success && {
+      bgcolor: green[500],
+      '&:hover': {
+        bgcolor: green[700],
+      },
+    }),
+  };
+
+  React.useEffect(() => {
+    return () => {
+      clearTimeout(timer.current);
+    };
+  }, []);
+
+  const handleButtonClick = () => {
+    if (!loading) {
+      setSuccess(false);
+      setLoading(true);
+      timer.current = setTimeout(() => {
+        setSuccess(true);
+        setLoading(false);
+      }, 2000);
+    }
+    /*axios.post(`/saved`, visit, { headers: { Authorization: localStorage.getItem('token') } }).then((response) => {
+      setSave(save.concat([response.data]));
+    })*/
+    history('/savedtables')
+  };
+
+
+  const style = {
+    position: 'absolute',
+    top: '50%',
+    left: '50%',
+    transform: 'translate(-50%, -50%)',
+    width: 400,
+    bgcolor: 'background.paper',
+    border: '2px solid #000',
+    boxShadow: 24,
+    p: 4,
+  };
+
+  /*---------------------------------------------------------------------------------------------------------------------------------------*/
+  /*---------------------------------------------------------------------------------------------------------------------------------------*/
+  /*---------------------------------------------------------------NAVBAR------------------------------------------------------------------*/
+  /*---------------------------------------------------------------------------------------------------------------------------------------*/
+  /*---------------------------------------------------------------------------------------------------------------------------------------*/
   const history = useNavigate();
   const pages = ['Felvétel'];
   const settings = ['Kijelentkezés'];
@@ -114,24 +160,24 @@ export function TablaPortas() {
   };
 
 
-  const bez = function(){
+  const bez = function () {
     setOpen(false);
   }
 
   let [person, setPerson] = useState([]);
 
   const [felvettData, setFelvettData] = useState({
-    name : "",
-    visitorType : "VENDEG",
-    idNumber : 1
+    name: "",
+    visitorType: "VENDEG",
+    idNumber: 1
   })
 
-  function felvetel(){
-    axios.post(`/visitor`, felvettData, {headers:{Authorization:localStorage.getItem('token')}}).then((response) => {
+  function felvetel() {
+    axios.post(`/visitor`, felvettData, { headers: { Authorization: localStorage.getItem('token') } }).then((response) => {
       setPerson(person.concat([response.data]));
     })
   }
-  const felvesz = function(){
+  const felvesz = function () {
     setOpen(false);
     felvetel();
   }
@@ -145,11 +191,11 @@ export function TablaPortas() {
 
 
 
-/*---------------------------------------------------------------------------------------------------------------------------------------*/
-/*---------------------------------------------------------------------------------------------------------------------------------------*/
-/*----------------------------------------------------------------TABLA------------------------------------------------------------------*/
-/*---------------------------------------------------------------------------------------------------------------------------------------*/
-/*---------------------------------------------------------------------------------------------------------------------------------------*/
+  /*---------------------------------------------------------------------------------------------------------------------------------------*/
+  /*---------------------------------------------------------------------------------------------------------------------------------------*/
+  /*----------------------------------------------------------------TABLA------------------------------------------------------------------*/
+  /*---------------------------------------------------------------------------------------------------------------------------------------*/
+  /*---------------------------------------------------------------------------------------------------------------------------------------*/
 
 
 
@@ -169,7 +215,7 @@ export function TablaPortas() {
     }).catch((error) => { })
     let button = document.getElementById(id);
     button.disabled = true;
-    setDeleted(deletedVisit.concat([id]))
+    setDeleted(deletedVisit.concat([id]));
   }
 
   function belep(id) {
@@ -186,191 +232,190 @@ export function TablaPortas() {
     }).catch((error) => { });
   }, [visitor]);
 
-
   return (
     <>
-{
-/*---------------------------------------------------------------------------------------------------------------------------------------*/
-/*---------------------------------------------------------------------------------------------------------------------------------------*/
-/*----------------------------------------------------------------NAVBAR-----------------------------------------------------------------*/
-/*---------------------------------------------------------------------------------------------------------------------------------------*/
-/*---------------------------------------------------------------------------------------------------------------------------------------*/
-}
+      {
+        /*---------------------------------------------------------------------------------------------------------------------------------------*/
+        /*---------------------------------------------------------------------------------------------------------------------------------------*/
+        /*----------------------------------------------------------------NAVBAR-----------------------------------------------------------------*/
+        /*---------------------------------------------------------------------------------------------------------------------------------------*/
+        /*---------------------------------------------------------------------------------------------------------------------------------------*/
+      }
 
-<AppBar position="static">
-      <Container maxWidth="xl">
-        <Toolbar disableGutters>
-          <Typography
-            variant="h6"
-            noWrap
-            component="a"
-            href="#app-bar-with-responsive-menu"
-            sx={{
-              mr: 2,
-              display: { xs: 'none', md: 'flex' },
-              fontFamily: 'monospace',
-              fontWeight: 700,
-              letterSpacing: '.3rem',
-              color: 'inherit',
-              textDecoration: 'none',
-            }}
-          >
-            PORTA PORTÁS
-          </Typography>
-
-          <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
-            <IconButton
-              size="large"
-              aria-label="account of current user"
-              aria-controls="menu-appbar"
-              aria-haspopup="true"
-              onClick={handleOpenNavMenu}
-              color="inherit"
-            >
-              <MenuIcon />
-            </IconButton>
-            <Menu
-              id="menu-appbar"
-              anchorEl={anchorElNav}
-              anchorOrigin={{
-                vertical: 'bottom',
-                horizontal: 'left',
-              }}
-              keepMounted
-              transformOrigin={{
-                vertical: 'top',
-                horizontal: 'left',
-              }}
-              open={Boolean(anchorElNav)}
-              onClose={handleCloseNavMenu}
+      <AppBar position="static">
+        <Container maxWidth="xl">
+          <Toolbar disableGutters>
+            <Typography
+              variant="h6"
+              noWrap
+              component="a"
+              href="#app-bar-with-responsive-menu"
               sx={{
-                display: { xs: 'block', md: 'none' },
+                mr: 2,
+                display: { xs: 'none', md: 'flex' },
+                fontFamily: 'monospace',
+                fontWeight: 700,
+                letterSpacing: '.3rem',
+                color: 'inherit',
+                textDecoration: 'none',
               }}
             >
-              {pages.map((page) => (
-                <MenuItem key={page} onClick={handleCloseNavMenu}>
-                  <Typography textAlign="center">{page}</Typography>
-                </MenuItem>
-              ))}
-            </Menu>
-          </Box>
-          <AdbIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} />
-          <Typography
-            variant="h5"
-            noWrap
-            component="a"
-            href="#app-bar-with-responsive-menu"
-            sx={{
-              mr: 2,
-              display: { xs: 'flex', md: 'none' },
-              flexGrow: 1,
-              fontFamily: 'monospace',
-              fontWeight: 700,
-              letterSpacing: '.3rem',
-              color: 'inherit',
-              textDecoration: 'none',
-            }}
-          >
-            LOGO
-          </Typography>
-          <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-            <Button
-              sx={{ my: 2, color: 'white', display: 'block' }} onClick={handleOpen}
-            >
-              Felvétel
-            </Button>
-          </Box>
-
-          <Box sx={{ flexGrow: 0 }}>
-            <Tooltip title="Open settings">
-              <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar alt="" src="" />
-              </IconButton>
-            </Tooltip>
-            <Menu
-              sx={{ mt: '45px' }}
-              id="menu-appbar"
-              anchorEl={anchorElUser}
-              anchorOrigin={{
-                vertical: 'top',
-                horizontal: 'right',
-              }}
-              keepMounted
-              transformOrigin={{
-                vertical: 'top',
-                horizontal: 'right',
-              }}
-              open={Boolean(anchorElUser)}
-              onClose={handleCloseUserMenu}
-            >
-              {settings.map((setting) => (
-                <MenuItem key={setting} onClick={kijelentkezes}>
-                  <Typography textAlign="center">{setting}</Typography>
-                </MenuItem>
-              ))}
-            </Menu>
-          </Box>
-        </Toolbar>
-      </Container>
-    </AppBar>
-    <div>
-      <Modal
-        open={open}
-        onClose={bez}
-        aria-labelledby="modal-modal-title"
-        aria-describedby="modal-modal-description"
-      >
-
-        <div className="modalBox">
-          <Box sx={style}>
-
-            <Typography>
-              Felvétel
+              PORTA PORTÁS
             </Typography>
-            <TextField
-              id="standard-helperText"
-              defaultValue=""
-              label="Név"
-              variant="standard"
-              name='name'
-              onChange={handleSelect}
-            />
-            <br />
-            <TextField
-              disabled
-              id="standard-disabled"
-              label=""
-              defaultValue="VENDEG"
-              variant='standard'
-            />
-            <br />
-            <TextField
-              id="standard-helperTextSzem"
-              label='Személyi Szám'
-              defaultValue=""
-              variant="standard"
-              inputProps={{
-                minLength: 10,
-                maxLength: 10,
-              }}
-              name='idNumber'
-              onChange={handleSelect}
-            />
-            <br />
-            <Button onClick={bez} sx={{ mt: 2 }}>Bezárás</Button>
-            <Button onClick={felvesz} sx={{ mt: 2 }}>Felvétel</Button>
-          </Box>
-        </div>
-      </Modal>
-    </div>
 
-{
-/*---------------------------------------------------------------------------------------------------------------------------------------*/
-/*---------------------------------------------------------------------------------------------------------------------------------------*/
-/*----------------------------------------------------------------TABLA------------------------------------------------------------------*/
-/*---------------------------------------------------------------------------------------------------------------------------------------*/
-/*---------------------------------------------------------------------------------------------------------------------------------------*/
-}
+            <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
+              <IconButton
+                size="large"
+                aria-label="account of current user"
+                aria-controls="menu-appbar"
+                aria-haspopup="true"
+                onClick={handleOpenNavMenu}
+                color="inherit"
+              >
+                <MenuIcon />
+              </IconButton>
+              <Menu
+                id="menu-appbar"
+                anchorEl={anchorElNav}
+                anchorOrigin={{
+                  vertical: 'bottom',
+                  horizontal: 'left',
+                }}
+                keepMounted
+                transformOrigin={{
+                  vertical: 'top',
+                  horizontal: 'left',
+                }}
+                open={Boolean(anchorElNav)}
+                onClose={handleCloseNavMenu}
+                sx={{
+                  display: { xs: 'block', md: 'none' },
+                }}
+              >
+                {pages.map((page) => (
+                  <MenuItem key={page} onClick={handleCloseNavMenu}>
+                    <Typography textAlign="center">{page}</Typography>
+                  </MenuItem>
+                ))}
+              </Menu>
+            </Box>
+            <AdbIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} />
+            <Typography
+              variant="h5"
+              noWrap
+              component="a"
+              href="#app-bar-with-responsive-menu"
+              sx={{
+                mr: 2,
+                display: { xs: 'flex', md: 'none' },
+                flexGrow: 1,
+                fontFamily: 'monospace',
+                fontWeight: 700,
+                letterSpacing: '.3rem',
+                color: 'inherit',
+                textDecoration: 'none',
+              }}
+            >
+              LOGO
+            </Typography>
+            <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
+              <Button
+                sx={{ my: 2, color: 'white', display: 'block' }} onClick={handleOpen}
+              >
+                Felvétel
+              </Button>
+            </Box>
+
+            <Box sx={{ flexGrow: 0 }}>
+              <Tooltip title="Open settings">
+                <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+                  <Avatar alt="" src="" />
+                </IconButton>
+              </Tooltip>
+              <Menu
+                sx={{ mt: '45px' }}
+                id="menu-appbar"
+                anchorEl={anchorElUser}
+                anchorOrigin={{
+                  vertical: 'top',
+                  horizontal: 'right',
+                }}
+                keepMounted
+                transformOrigin={{
+                  vertical: 'top',
+                  horizontal: 'right',
+                }}
+                open={Boolean(anchorElUser)}
+                onClose={handleCloseUserMenu}
+              >
+                {settings.map((setting) => (
+                  <MenuItem key={setting} onClick={kijelentkezes}>
+                    <Typography textAlign="center">{setting}</Typography>
+                  </MenuItem>
+                ))}
+              </Menu>
+            </Box>
+          </Toolbar>
+        </Container>
+      </AppBar>
+      <div>
+        <Modal
+          open={open}
+          onClose={bez}
+          aria-labelledby="modal-modal-title"
+          aria-describedby="modal-modal-description"
+        >
+
+          <div className="modalBox">
+            <Box sx={style}>
+
+              <Typography>
+                Felvétel
+              </Typography>
+              <TextField
+                id="standard-helperText"
+                defaultValue=""
+                label="Név"
+                variant="standard"
+                name='name'
+                onChange={handleSelect}
+              />
+              <br />
+              <TextField
+                disabled
+                id="standard-disabled"
+                label=""
+                defaultValue="VENDEG"
+                variant='standard'
+              />
+              <br />
+              <TextField
+                id="standard-helperTextSzem"
+                label='Személyi Szám'
+                defaultValue=""
+                variant="standard"
+                inputProps={{
+                  minLength: 10,
+                  maxLength: 10,
+                }}
+                name='idNumber'
+                onChange={handleSelect}
+              />
+              <br />
+              <Button onClick={bez} sx={{ mt: 2 }}>Bezárás</Button>
+              <Button onClick={felvesz} sx={{ mt: 2 }}>Felvétel</Button>
+            </Box>
+          </div>
+        </Modal>
+      </div>
+
+      {
+        /*---------------------------------------------------------------------------------------------------------------------------------------*/
+        /*---------------------------------------------------------------------------------------------------------------------------------------*/
+        /*----------------------------------------------------------------TABLA------------------------------------------------------------------*/
+        /*---------------------------------------------------------------------------------------------------------------------------------------*/
+        /*---------------------------------------------------------------------------------------------------------------------------------------*/
+      }
       <div className="container">
         <div className='jobbtabla'>
           <TableContainer component={Paper}>
@@ -406,6 +451,38 @@ export function TablaPortas() {
             <Table sx={{ minWidth: 400 }} aria-label="customized table">
               <TableHead>
                 <TableRow>
+                  <StyledTableCell colSpan='4' className='cella' align='center'>
+                    <div sx={{ display: 'flex' }} className="mentes">
+                      <Box sx={{ display: 'flex', alignItems: 'center' }}>
+                        <Box sx={{ m: 1, position: 'relative' }}>
+                          <Fab
+                            aria-label="save"
+                            color="primary"
+                            sx={buttonSx}
+                            onClick={handleButtonClick}
+                          >
+                            {success ? <CheckIcon /> : <SaveIcon />}
+                          </Fab>
+                          {loading && (
+                            <CircularProgress
+                              size={68}
+                              sx={{
+                                color: green[500],
+                                position: 'absolute',
+                                top: -6,
+                                left: -6,
+                                zIndex: 1,
+                              }}
+                            />
+                          )}
+                        </Box>
+                      </Box>
+                    </div>
+                  </StyledTableCell>
+                </TableRow>
+              </TableHead>
+              <TableHead>
+                <TableRow>
                   <StyledTableCell className='cella' align="center">Név</StyledTableCell>
                   <StyledTableCell className='cella' align="center">Belépés ideje</StyledTableCell>
                   <StyledTableCell className='cella' align="center">Kilépés ideje</StyledTableCell>
@@ -417,8 +494,8 @@ export function TablaPortas() {
                   <StyledTableRow key={row.id}>
                     <StyledTableCell className='cella' align="center">{row.name}</StyledTableCell>
                     <StyledTableCell className='cella' align="center">{row.entryTime}</StyledTableCell>
-                    <StyledTableCell className='cella' align="center">{row.exitTime}</StyledTableCell>
-                    <StyledTableCell className='cella' align="center"><button id={row.id} onClick={() => { kilep(row.id) }} disabled={false}>Kilépés rögzítése</button></StyledTableCell>
+                    <StyledTableCell className='cella' align="center" id='exitTime'>{row.exitTime}</StyledTableCell>
+                    <StyledTableCell className='cella' align="center"><button id={row.id} onClick={() => { kilep(row.id) }}>Kilépés rögzítése</button></StyledTableCell>
                   </StyledTableRow>
                 ))}
               </TableBody>
@@ -439,11 +516,63 @@ export function TablaPortas() {
 
 
 export function TablaAdmin() {
-/*---------------------------------------------------------------------------------------------------------------------------------------*/
-/*---------------------------------------------------------------------------------------------------------------------------------------*/
-/*----------------------------------------------------------------NAVBAR-----------------------------------------------------------------*/
-/*---------------------------------------------------------------------------------------------------------------------------------------*/
-/*---------------------------------------------------------------------------------------------------------------------------------------*/
+  /*---------------------------------------------------------------------------------------------------------------------------------------*/
+  /*---------------------------------------------------------------------------------------------------------------------------------------*/
+  /*---------------------------------------------------------------SAVE--------------------------------------------------------------------*/
+  /*---------------------------------------------------------------------------------------------------------------------------------------*/
+  /*---------------------------------------------------------------------------------------------------------------------------------------*/
+  const [loading, setLoading] = React.useState(false);
+  const [success, setSuccess] = React.useState(false);
+  const timer = React.useRef();
+  const [save, setSave] = React.useState([]);
+
+  const buttonSx = {
+    ...(success && {
+      bgcolor: green[500],
+      '&:hover': {
+        bgcolor: green[700],
+      },
+    }),
+  };
+
+  React.useEffect(() => {
+    return () => {
+      clearTimeout(timer.current);
+    };
+  }, []);
+
+  const handleButtonClick = () => {
+    if (!loading) {
+      setSuccess(false);
+      setLoading(true);
+      timer.current = setTimeout(() => {
+        setSuccess(true);
+        setLoading(false);
+      }, 2000);
+    }
+    /*axios.post(`/saved`, visit, { headers: { Authorization: localStorage.getItem('token') } }).then((response) => {
+      setSave(save.concat([response.data]));
+    })*/
+    history('/savedtables')
+  };
+
+
+  const style = {
+    position: 'absolute',
+    top: '50%',
+    left: '50%',
+    transform: 'translate(-50%, -50%)',
+    width: 400,
+    bgcolor: 'background.paper',
+    border: '2px solid #000',
+    boxShadow: 24,
+    p: 4,
+  };
+  /*---------------------------------------------------------------------------------------------------------------------------------------*/
+  /*---------------------------------------------------------------------------------------------------------------------------------------*/
+  /*----------------------------------------------------------------NAVBAR-----------------------------------------------------------------*/
+  /*---------------------------------------------------------------------------------------------------------------------------------------*/
+  /*---------------------------------------------------------------------------------------------------------------------------------------*/
   const history = useNavigate();
   const pages = ['Felvétel'];
   const settings = ['Kijelentkezés'];
@@ -477,24 +606,24 @@ export function TablaAdmin() {
   };
 
 
-  const bez = function(){
+  const bez = function () {
     setOpen(false);
   }
 
   let [person, setPerson] = useState([]);
 
   const [felvettData, setFelvettData] = useState({
-    name : "",
-    visitorType : "VENDEG",
-    idNumber : 1
+    name: "",
+    visitorType: "VENDEG",
+    idNumber: 1
   })
 
-  function felvetel(){
-    axios.post(`/visitor`, felvettData, {headers:{Authorization:localStorage.getItem('token')}}).then((response) => {
+  function felvetel() {
+    axios.post(`/visitor`, felvettData, { headers: { Authorization: localStorage.getItem('token') } }).then((response) => {
       setPerson(person.concat([response.data]));
     })
   }
-  const felvesz = function(){
+  const felvesz = function () {
     setOpen(false);
     felvetel();
   }
@@ -508,11 +637,11 @@ export function TablaAdmin() {
 
 
 
-/*---------------------------------------------------------------------------------------------------------------------------------------*/
-/*---------------------------------------------------------------------------------------------------------------------------------------*/
-/*----------------------------------------------------------------TABLA------------------------------------------------------------------*/
-/*---------------------------------------------------------------------------------------------------------------------------------------*/
-/*---------------------------------------------------------------------------------------------------------------------------------------*/
+  /*---------------------------------------------------------------------------------------------------------------------------------------*/
+  /*---------------------------------------------------------------------------------------------------------------------------------------*/
+  /*----------------------------------------------------------------TABLA------------------------------------------------------------------*/
+  /*---------------------------------------------------------------------------------------------------------------------------------------*/
+  /*---------------------------------------------------------------------------------------------------------------------------------------*/
 
 
 
@@ -560,188 +689,188 @@ export function TablaAdmin() {
   }
   return (
     <>
-{
-/*---------------------------------------------------------------------------------------------------------------------------------------*/
-/*---------------------------------------------------------------------------------------------------------------------------------------*/
-/*----------------------------------------------------------------NAVBAR-----------------------------------------------------------------*/
-/*---------------------------------------------------------------------------------------------------------------------------------------*/
-/*---------------------------------------------------------------------------------------------------------------------------------------*/
-}
-        <AppBar position="static">
-      <Container maxWidth="xl">
-        <Toolbar disableGutters>
-          <Typography
-            variant="h6"
-            noWrap
-            component="a"
-            href="#app-bar-with-responsive-menu"
-            sx={{
-              mr: 2,
-              display: { xs: 'none', md: 'flex' },
-              fontFamily: 'monospace',
-              fontWeight: 700,
-              letterSpacing: '.3rem',
-              color: 'inherit',
-              textDecoration: 'none',
-            }}
-          >
-            PORTA ADMIN
-          </Typography>
-
-          <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
-            <IconButton
-              size="large"
-              aria-label="account of current user"
-              aria-controls="menu-appbar"
-              aria-haspopup="true"
-              onClick={handleOpenNavMenu}
-              color="inherit"
-            >
-              <MenuIcon />
-            </IconButton>
-            <Menu
-              id="menu-appbar"
-              anchorEl={anchorElNav}
-              anchorOrigin={{
-                vertical: 'bottom',
-                horizontal: 'left',
-              }}
-              keepMounted
-              transformOrigin={{
-                vertical: 'top',
-                horizontal: 'left',
-              }}
-              open={Boolean(anchorElNav)}
-              onClose={handleCloseNavMenu}
+      {
+        /*---------------------------------------------------------------------------------------------------------------------------------------*/
+        /*---------------------------------------------------------------------------------------------------------------------------------------*/
+        /*----------------------------------------------------------------NAVBAR-----------------------------------------------------------------*/
+        /*---------------------------------------------------------------------------------------------------------------------------------------*/
+        /*---------------------------------------------------------------------------------------------------------------------------------------*/
+      }
+      <AppBar position="static">
+        <Container maxWidth="xl">
+          <Toolbar disableGutters>
+            <Typography
+              variant="h6"
+              noWrap
+              component="a"
+              href="#app-bar-with-responsive-menu"
               sx={{
-                display: { xs: 'block', md: 'none' },
+                mr: 2,
+                display: { xs: 'none', md: 'flex' },
+                fontFamily: 'monospace',
+                fontWeight: 700,
+                letterSpacing: '.3rem',
+                color: 'inherit',
+                textDecoration: 'none',
               }}
             >
-              {pages.map((page) => (
-                <MenuItem key={page} onClick={kijelentkezes}>
-                  <Typography textAlign="center">{page}</Typography>
-                </MenuItem>
-              ))}
-            </Menu>
-          </Box>
-          <AdbIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} />
-          <Typography
-            variant="h5"
-            noWrap
-            component="a"
-            href="#app-bar-with-responsive-menu"
-            sx={{
-              mr: 2,
-              display: { xs: 'flex', md: 'none' },
-              flexGrow: 1,
-              fontFamily: 'monospace',
-              fontWeight: 700,
-              letterSpacing: '.3rem',
-              color: 'inherit',
-              textDecoration: 'none',
-            }}
-          >
-            LOGO
-          </Typography>
-          <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-            <Button
-              sx={{ my: 2, color: 'white', display: 'block' }} onClick={handleOpen}
-            >
-              Felvétel
-            </Button>
-          </Box>
-          <Box sx={{ flexGrow: 0 }}>
-            <Tooltip title="Open settings">
-              <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar alt="" src="" />
-              </IconButton>
-            </Tooltip>
-            <Menu
-              sx={{ mt: '45px' }}
-              id="menu-appbar"
-              anchorEl={anchorElUser}
-              anchorOrigin={{
-                vertical: 'top',
-                horizontal: 'right',
-              }}
-              keepMounted
-              transformOrigin={{
-                vertical: 'top',
-                horizontal: 'right',
-              }}
-              open={Boolean(anchorElUser)}
-              onClose={handleCloseUserMenu}
-            >
-              {settings.map((setting) => (
-                <MenuItem key={setting} onClick={kijelentkezes}>
-                  <Typography textAlign="center">{setting}</Typography>
-                </MenuItem>
-              ))}
-            </Menu>
-          </Box>
-        </Toolbar>
-      </Container>
-    </AppBar>
-    <div>
-      <Modal
-        open={open}
-        onClose={handleClose}
-        aria-labelledby="modal-modal-title"
-        aria-describedby="modal-modal-description"
-      >
-        <div className="modalBox">
-          <Box sx={style}>
-            <Typography>
-              Felvétel
+              PORTA ADMIN
             </Typography>
-            <TextField
-              id="standard-helperText"
-              defaultValue=""
-              label="Név"
-              variant="standard"
-              name='name'
-              onChange={handleSelect}
-            />
-            <br />
-            <Select
-              labelId='demo-simple-select-label'
-              id='demo-simple-select'
-              defaultValue='VENDEG'
-              name='visitorType'
-              onChange={handleSelect}
-            >
-              <MenuItem value="VENDEG">Vendég</MenuItem>
-              <MenuItem value="DOLGOZO">Dolgozó</MenuItem>
-            </Select>
-            <br />
-            <TextField
-              id="standard-helperTextSzem"
-              label='Személyi Szám'
-              defaultValue=""
-              variant="standard"
-              inputProps={{ 
-                minLength: 10,
-                maxLength: 10,
+
+            <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
+              <IconButton
+                size="large"
+                aria-label="account of current user"
+                aria-controls="menu-appbar"
+                aria-haspopup="true"
+                onClick={handleOpenNavMenu}
+                color="inherit"
+              >
+                <MenuIcon />
+              </IconButton>
+              <Menu
+                id="menu-appbar"
+                anchorEl={anchorElNav}
+                anchorOrigin={{
+                  vertical: 'bottom',
+                  horizontal: 'left',
+                }}
+                keepMounted
+                transformOrigin={{
+                  vertical: 'top',
+                  horizontal: 'left',
+                }}
+                open={Boolean(anchorElNav)}
+                onClose={handleCloseNavMenu}
+                sx={{
+                  display: { xs: 'block', md: 'none' },
+                }}
+              >
+                {pages.map((page) => (
+                  <MenuItem key={page} onClick={kijelentkezes}>
+                    <Typography textAlign="center">{page}</Typography>
+                  </MenuItem>
+                ))}
+              </Menu>
+            </Box>
+            <AdbIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} />
+            <Typography
+              variant="h5"
+              noWrap
+              component="a"
+              href="#app-bar-with-responsive-menu"
+              sx={{
+                mr: 2,
+                display: { xs: 'flex', md: 'none' },
+                flexGrow: 1,
+                fontFamily: 'monospace',
+                fontWeight: 700,
+                letterSpacing: '.3rem',
+                color: 'inherit',
+                textDecoration: 'none',
               }}
-              name='idNumber'
-              onChange={handleSelect}
-            />
-            <br />
-            <Button onClick={bez} sx={{ mt: 2 }}>Bezárás</Button>
-            <Button onClick={felvesz} sx={{ mt: 2 }}>Felvétel</Button>
-          </Box>
-        </div>
-      </Modal>
-    </div>
+            >
+              LOGO
+            </Typography>
+            <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
+              <Button
+                sx={{ my: 2, color: 'white', display: 'block' }} onClick={handleOpen}
+              >
+                Felvétel
+              </Button>
+            </Box>
+            <Box sx={{ flexGrow: 0 }}>
+              <Tooltip title="Open settings">
+                <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+                  <Avatar alt="" src="" />
+                </IconButton>
+              </Tooltip>
+              <Menu
+                sx={{ mt: '45px' }}
+                id="menu-appbar"
+                anchorEl={anchorElUser}
+                anchorOrigin={{
+                  vertical: 'top',
+                  horizontal: 'right',
+                }}
+                keepMounted
+                transformOrigin={{
+                  vertical: 'top',
+                  horizontal: 'right',
+                }}
+                open={Boolean(anchorElUser)}
+                onClose={handleCloseUserMenu}
+              >
+                {settings.map((setting) => (
+                  <MenuItem key={setting} onClick={kijelentkezes}>
+                    <Typography textAlign="center">{setting}</Typography>
+                  </MenuItem>
+                ))}
+              </Menu>
+            </Box>
+          </Toolbar>
+        </Container>
+      </AppBar>
+      <div>
+        <Modal
+          open={open}
+          onClose={handleClose}
+          aria-labelledby="modal-modal-title"
+          aria-describedby="modal-modal-description"
+        >
+          <div className="modalBox">
+            <Box sx={style}>
+              <Typography>
+                Felvétel
+              </Typography>
+              <TextField
+                id="standard-helperText"
+                defaultValue=""
+                label="Név"
+                variant="standard"
+                name='name'
+                onChange={handleSelect}
+              />
+              <br />
+              <Select
+                labelId='demo-simple-select-label'
+                id='demo-simple-select'
+                defaultValue='VENDEG'
+                name='visitorType'
+                onChange={handleSelect}
+              >
+                <MenuItem value="VENDEG">Vendég</MenuItem>
+                <MenuItem value="DOLGOZO">Dolgozó</MenuItem>
+              </Select>
+              <br />
+              <TextField
+                id="standard-helperTextSzem"
+                label='Személyi Szám'
+                defaultValue=""
+                variant="standard"
+                inputProps={{
+                  minLength: 10,
+                  maxLength: 10,
+                }}
+                name='idNumber'
+                onChange={handleSelect}
+              />
+              <br />
+              <Button onClick={bez} sx={{ mt: 2 }}>Bezárás</Button>
+              <Button onClick={felvesz} sx={{ mt: 2 }}>Felvétel</Button>
+            </Box>
+          </div>
+        </Modal>
+      </div>
 
 
-{
-/*---------------------------------------------------------------------------------------------------------------------------------------*/
-/*---------------------------------------------------------------------------------------------------------------------------------------*/
-/*----------------------------------------------------------------TABLA------------------------------------------------------------------*/
-/*---------------------------------------------------------------------------------------------------------------------------------------*/
-/*---------------------------------------------------------------------------------------------------------------------------------------*/
-}
+      {
+        /*---------------------------------------------------------------------------------------------------------------------------------------*/
+        /*---------------------------------------------------------------------------------------------------------------------------------------*/
+        /*----------------------------------------------------------------TABLA------------------------------------------------------------------*/
+        /*---------------------------------------------------------------------------------------------------------------------------------------*/
+        /*---------------------------------------------------------------------------------------------------------------------------------------*/
+      }
 
 
       <div className="container">
@@ -779,6 +908,38 @@ export function TablaAdmin() {
         <div className='kozeptabla'>
           <TableContainer component={Paper}>
             <Table sx={{ minWidth: 400 }} aria-label="customized table">
+              <TableHead>
+                <TableRow>
+                  <StyledTableCell colSpan='5' className='cella' align='center'>
+                    <div sx={{ display: 'flex' }} className="mentes">
+                      <Box sx={{ display: 'flex', alignItems: 'center' }}>
+                        <Box sx={{ m: 1, position: 'relative' }}>
+                          <Fab
+                            aria-label="save"
+                            color="primary"
+                            sx={buttonSx}
+                            onClick={handleButtonClick}
+                          >
+                            {success ? <CheckIcon /> : <SaveIcon />}
+                          </Fab>
+                          {loading && (
+                            <CircularProgress
+                              size={68}
+                              sx={{
+                                color: green[500],
+                                position: 'absolute',
+                                top: -6,
+                                left: -6,
+                                zIndex: 1,
+                              }}
+                            />
+                          )}
+                        </Box>
+                      </Box>
+                    </div>
+                  </StyledTableCell>
+                </TableRow>
+              </TableHead>
               <TableHead>
                 <TableRow>
                   <StyledTableCell className='cella' align="center">Név</StyledTableCell>
