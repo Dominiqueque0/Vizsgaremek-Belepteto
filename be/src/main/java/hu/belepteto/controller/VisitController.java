@@ -8,6 +8,7 @@ import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Date;
 import java.util.List;
 
 @RestController
@@ -45,9 +46,9 @@ public class VisitController {
         return service.updateOneVisit(id);
     }
 
-    @DeleteMapping("/visit/all")
+    @DeleteMapping("/visit/delete/{date}")
     @Operation(summary = "Belépések nullázása", description = "Új nap kezdése")
-    private boolean deleteAllVisits(){
-        return service.deleteAllVisits();
+    private boolean deleteAllVisits(@RequestBody Date date){
+        return service.deleteAllVisits(date);
     };
 }

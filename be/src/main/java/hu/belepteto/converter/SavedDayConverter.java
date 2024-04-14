@@ -12,7 +12,9 @@ public class SavedDayConverter {
         GetSavedDay getSavedDay = new GetSavedDay();
         getSavedDay.setId(visit.getId());
         getSavedDay.setDate(visit.getEntryTime());
-        getSavedDay.setVisitId(visit);
+        getSavedDay.setName(visit.getVisitor().getName());
+        getSavedDay.setEntryTime(visit.getEntryTime());
+        getSavedDay.setExitTime(visit.getExitTime());
         return getSavedDay;
     }
 
@@ -20,7 +22,9 @@ public class SavedDayConverter {
         GetSavedDay getSavedDay = new GetSavedDay();
         getSavedDay.setId(savedDay.getId());
         getSavedDay.setDate(savedDay.getDate());
-        getSavedDay.setVisitId(savedDay.getVisit());
+        getSavedDay.setEntryTime(savedDay.getDate());
+        getSavedDay.setExitTime(savedDay.getExitTime());
+        getSavedDay.setName(savedDay.getName());
         return getSavedDay;
     }
 
@@ -29,7 +33,9 @@ public class SavedDayConverter {
         savedDay.setId(getSavedDay.getId());
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
         savedDay.setDate(getSavedDay.getDate());
-        savedDay.setVisit(getSavedDay.getVisitId());
+        savedDay.setEntryTime(getSavedDay.getEntryTime());
+        savedDay.setExitTime(getSavedDay.getExitTime());
+        savedDay.setName(getSavedDay.getName());
 
         return savedDay;
     }

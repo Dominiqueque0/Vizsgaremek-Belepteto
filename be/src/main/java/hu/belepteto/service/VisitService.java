@@ -5,13 +5,12 @@ import hu.belepteto.dto.visit.CreateVisit;
 import hu.belepteto.dto.visit.GetVisit;
 import hu.belepteto.dto.visit.UpdateOneVisit;
 import hu.belepteto.exception.VisitorAlreadyInException;
-import hu.belepteto.model.Reason;
-import hu.belepteto.model.Users;
-import hu.belepteto.model.Visit;
-import hu.belepteto.model.Visitor;
+import hu.belepteto.model.*;
+import hu.belepteto.repository.SavedDayRepository;
 import hu.belepteto.repository.UserRepository;
 import hu.belepteto.repository.VisitRepository;
 import hu.belepteto.repository.VisitorRepository;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
@@ -31,6 +30,9 @@ public class VisitService {
 
     @Autowired
     private UserRepository userRepository;
+
+    @Autowired
+    private SavedDayRepository savedDayRepository;
 
     public GetVisit createVisit(CreateVisit createVisit) {
         Visit visit = new Visit();
@@ -85,8 +87,12 @@ public class VisitService {
         repository.deleteById(id);
         return true;
     }
-    public boolean deleteAllVisits() {
-        repository.deleteAll();
+
+    public boolean deleteAllVisits(Date date) {
+        List<Visit> visitsToDelete = repository.findByEntryTime(date);
+
+        repository.deleteAll(visitsToDelete);
+
         return true;
     }
 }

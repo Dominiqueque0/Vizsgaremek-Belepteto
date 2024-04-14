@@ -36,7 +36,6 @@ public class VisitorController {
         return service.listVisitors();
     }
 
-    @PreAuthorize("hasAuthority('permission:admin')")
     @DeleteMapping("/visitor/{id}")
     @Operation(summary = "Vendég törlése", description = "ID megadásával vendég törlése a rendszerből")
     public boolean deleteVisitor(@PathVariable Integer id){
