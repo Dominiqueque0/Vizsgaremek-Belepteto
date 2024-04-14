@@ -176,7 +176,7 @@ export function TablaPortas() {
   const [felvettData, setFelvettData] = useState({
     name: "",
     visitorType: "VENDEG",
-    idNumber: 1
+    idNumber: ""
   })
 
   function felvetel() {
@@ -693,7 +693,7 @@ export function TablaAdmin() {
   const [felvettData, setFelvettData] = useState({
     name: "",
     visitorType: "VENDEG",
-    idNumber: 1
+    idNumber: ""
   })
 
   function felvetel() {
@@ -703,19 +703,17 @@ export function TablaAdmin() {
       alert(error);
     });
   }
+
   const [error, setError] = useState('');
   const felvesz = function () {
     try {
-      if (!felvettData.name) {
-        if (!felvettData.idNumber) {
-          if (felvettData.idNumber.size < 10) {
-            setError('Kérjük írja be a nevet és a személyi számot(10).');
-            return;
-          }
-        }
+      if (!felvettData.name || felvettData.idNumber === null || felvettData.idNumber.length < 10) {
+        setError('Kérjük írja be a nevet és a személyi számot (minimum 10 karakter).');
+        return;
       } else {
-        setOpen(false);
+        setError('');
         felvetel();
+        setOpen(false);
       }
     } catch (error) {
       alert(error)
