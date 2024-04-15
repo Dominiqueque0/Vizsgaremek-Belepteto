@@ -45,7 +45,7 @@
 | Utófelvétel                | A belépés törlésre került a rendszerben.                                                        | 
 | Eredmény                   | A belépés nem lesz benne a rendszerben.                                                         | 
 | Használati eset realizáció | Technikai modell                                                                                | 
-|
+
 
 | Név                        | Kilépés megadása                                                                                               |
 |----------------------------|----------------------------------------------------------------------------------------------------------------|
@@ -57,7 +57,7 @@
 | Utófelvétel                | -                                                                                                              | 
 | Eredmény                   | A kilépés rögzítésre került a rendszerben.                                                                     | 
 | Használati eset realizáció | Technikai modell                                                                                               | 
-|
+
 
 | Név                        | Felhasználó törlése                                                                                                                                                          |
 |----------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -69,5 +69,5 @@
 | Utófelvétel                | Az összes belépés törlésre került a bal oldali "belépői" táblából .                                                                                                          | 
 | Eredmény                   | A belépések nullázódnak.                                                                                                                                                     | 
 | Használati eset realizáció | Technikai modell                                                                                                                                                             | 
-|
+
 ---
