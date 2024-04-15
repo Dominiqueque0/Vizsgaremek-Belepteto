@@ -11,7 +11,7 @@
 | Alternatívák és kivételek  | E1: A portás nem adott meg nevet. <br/> E1: A rögzítés nem került végrehajtásra.                                                              | 
 | Utófelvétel                | A vendég sikeresen rögzítésre került a rendszerben.                                                                                           | 
 | Eredmény                   | Az portás az új vendéget a rendszerben kezelni tudja.                                                                                         | 
-| Használati eset realizáció | Technikai modell                                                                                                                              | 
+
 
 | Név                        | Bejelentkezés                                                                                                                                                                          |
 |----------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -22,7 +22,7 @@
 | Alternatívák és kivételek  | E1: Nem lett egy mező kitöltve. <br/>E1: Az oldal kiírja a hiba okát.<br> E2: Egy mező hibásan lett kitöltve. <br/>E2: Az oldal kiírja a hiba okát.                                    | 
 | Utófelvétel                | A bejelentkezés sikeres és elérhetővé válik az oldal.                                                                                                                                  | 
 | Eredmény                   | A felhaználó típusától függően az alaklmazás a megfelelő oldalra navítál.                                                                                                              | 
-| Használati eset realizáció | Technikai modell                                                                                                                                                                       | 
+
 
 | Név                        | Vendégek listázása                                                      |
 |----------------------------|-------------------------------------------------------------------------|
@@ -33,7 +33,7 @@
 | Utófelvétel                | -                                                                       | 
 | Alternatívák és kivételek  | -                                                                       | 
 | Eredmény                   | A felhasználó látja az összes adatot.                                   | 
-| Használati eset realizáció | Technikai modell                                                        | 
+
 
 | Név                        | Vendég törlése                                                                             |
 |----------------------------|--------------------------------------------------------------------------------------------|
@@ -44,7 +44,5 @@
 | Alternatívák és kivételek  | -                                                                                          | 
 | Utófelvétel                | A vendég törlésre került a rendszerben.                                                    | 
 | Eredmény                   | A felhasználó nem lesz benne a rendszerben.                                                | 
-| Használati eset realizáció | Technikai modell                                                                           | 
-|
 
 ---
