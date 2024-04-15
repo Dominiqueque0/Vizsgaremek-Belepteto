@@ -11,7 +11,7 @@ illetve vendégeket felvenni.</br>
 
 #### Arculat
 
-![portasoldal](portaspage.png)
+![portasoldal](portas.png)
 
 #### A felületen lévő mezők
 
