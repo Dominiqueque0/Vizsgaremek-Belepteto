@@ -12,7 +12,6 @@
 | Utófelvétel                | Az összes belépés törlésre került a bal oldali "belépői" táblából .                                                                                                            | 
 | Eredmény                   | A belépések nullázódnak.                                                                                                                                                       | 
 | Használati eset realizáció | Technikai modell                                                                                                                                                               | 
-|
 
 | Név                        | Lementett nap visszakeresés                                                                                                                  |
 |----------------------------|----------------------------------------------------------------------------------------------------------------------------------------------|
@@ -24,4 +23,3 @@
 | Utófelvétel                | A nap összes belépése megjelenik az előtte lévő táblázatban.                                                                                 | 
 | Eredmény                   | A felhasználó látja a belépéseket az adott napra vonatkozóan.                                                                                | 
 | Használati eset realizáció | Technikai modell                                                                                                                             | 
-|
