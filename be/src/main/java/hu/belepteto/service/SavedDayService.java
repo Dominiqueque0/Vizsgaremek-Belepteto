@@ -43,7 +43,6 @@ public class SavedDayService {
 
     public List<GetSavedDay> getSavedDayByDate(Date date) {
         List<SavedDay> savedDay = repository.findByEntryTime(date);
-        System.out.println(savedDay);
         List<GetSavedDay> getSavedDayList = new ArrayList<>();
         for (SavedDay day : savedDay) {
             getSavedDayList.add(SavedDayConverter.convertSavedDayToGet(day));

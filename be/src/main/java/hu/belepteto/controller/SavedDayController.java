@@ -22,7 +22,6 @@ public class SavedDayController {
 
     @PostMapping("/savedDay")
     private List<GetSavedDay> getSavedDay(@RequestBody Date date){
-        System.out.println("teszt");
         return service.getSavedDayByDate(date);
     }
 }
