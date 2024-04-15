@@ -191,7 +191,7 @@ export function TablaPortas() {
   const felvesz = function () {
     try {
       if (!felvettData.name || felvettData.idNumber === null || felvettData.idNumber.length < 8) {
-        setError('Kérjük írja be a nevet és a személyi számot (minimum 10 karakter).');
+        setError('Kérjük írja be a nevet és a személyi igazolvány számot (minimum 8 karakter).');
         return;
       } else {
         setError('');
@@ -456,7 +456,7 @@ export function TablaPortas() {
               <br />
               <TextField
                 id="standard-helperTextSzem"
-                label='Személyi Szám'
+                label='Személyi Igazolvány Szám'
                 defaultValue=""
                 variant="standard"
                 inputProps={{
@@ -492,7 +492,7 @@ export function TablaPortas() {
                   <StyledTableCell className='cellaHead' align='center'>Id</StyledTableCell>
                   <StyledTableCell className='cellaHead' align="center">Név</StyledTableCell>
                   <StyledTableCell className='cellaHead' align="center">Típus</StyledTableCell>
-                  <StyledTableCell className='cellaHead' align="center">Személyi Szám</StyledTableCell>
+                  <StyledTableCell className='cellaHead' align="center">Személyi Igazolvány Szám</StyledTableCell>
                 </TableRow>
               </TableHead>
               <TableBody>
@@ -707,7 +707,7 @@ export function TablaAdmin() {
   const felvesz = function () {
     try {
       if (!felvettData.name || felvettData.idNumber === null || felvettData.idNumber.length < 10) {
-        setError('Kérjük írja be a nevet és a személyi számot (minimum 10 karakter).');
+        setError('Kérjük írja be a nevet és a személyi igazolvány számot (minimum 10 karakter).');
         return;
       } else {
         setError('');
@@ -977,7 +977,7 @@ export function TablaAdmin() {
               <br />
               <TextField
                 id="standard-helperTextSzem"
-                label='Személyi Szám'
+                label='Személyi Igazolvány Szám'
                 defaultValue=""
                 variant="standard"
                 inputProps={{
@@ -1016,7 +1016,7 @@ export function TablaAdmin() {
                   <StyledTableCell className='cellaHead' align='center'>Id</StyledTableCell>
                   <StyledTableCell className='cellaHead' align="center">Név</StyledTableCell>
                   <StyledTableCell className='cellaHead' align="center">Típus</StyledTableCell>
-                  <StyledTableCell className='cellaHead' align="center">Személyi Szám</StyledTableCell>
+                  <StyledTableCell className='cellaHead' align="center">Személyi Igazolvány Szám</StyledTableCell>
                   <StyledTableCell className='cellaHead' align="center"></StyledTableCell>
                 </TableRow>
               </TableHead>
