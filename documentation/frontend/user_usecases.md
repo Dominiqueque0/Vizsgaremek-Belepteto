@@ -11,7 +11,6 @@
 | Alternatívák és kivételek  | E1: Az admin nem adott meg nevet. <br/> E1: A rögzítés nem került végrehajtásra.                                                             | 
 | Utófelvétel                | A felhasználó sikeresen rögzítésre került a rendszerben.                                                                                     | 
 | Eredmény                   | Az admin az új felhasználót a rendszerben kezelni tudja.                                                                                     | 
-| Használati eset realizáció | Technikai modell                                                                                                                             | 
 
 | Név                        | Bejelentkezés                                                                                                                                                                          |
 |----------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -22,7 +21,6 @@
 | Alternatívák és kivételek  | E1: Nem lett egy mező kitöltve. <br/>E1: Az oldal kiírja a hiba okát.<br> E2: Egy mező hibásan lett kitöltve. <br/>E2: Az oldal kiírja a hiba okát.                                    | 
 | Utófelvétel                | A bejelentkezés sikeres és elérhetővé válik az oldal.                                                                                                                                  | 
 | Eredmény                   | A felhaználó típusától függően az alaklmazás a megfelelő oldalra navítál.                                                                                                              | 
-| Használati eset realizáció | Technikai modell                                                                                                                                                                       | 
 
 | Név                        | Felhasználók listázása                                                                                                                                                    |
 |----------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -33,7 +31,6 @@
 | Utófelvétel                | -                                                                                                                                                                         | 
 | Alternatívák és kivételek  | -                                                                                                                                                                         | 
 | Eredmény                   | A felhasználó látja az adatokat.                                                                                                                                          | 
-| Használati eset realizáció | Technikai modell                                                                                                                                                          | 
 
 | Név                        | Felhasználó törlése                                                                            |
 |----------------------------|------------------------------------------------------------------------------------------------|
@@ -44,6 +41,5 @@
 | Alternatívák és kivételek  | -                                                                                              | 
 | Utófelvétel                | A felhasznló törlésre került a rendszerben.                                                    | 
 | Eredmény                   | A felhasználó nem tud bejelentkezni.                                                           | 
-| Használati eset realizáció | Technikai modell                                                                               | 
 
 ---
