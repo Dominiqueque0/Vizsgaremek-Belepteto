@@ -9,7 +9,6 @@ import { useEffect } from 'react'
 /*---------------------------------------------------------------------------------------------------------------------------------------*/
 
 export default function Portas() {
-  console.log(localStorage.getItem('auth'));
   const history = useNavigate();
   useEffect(() => {
     if (localStorage.getItem('token') === null) {

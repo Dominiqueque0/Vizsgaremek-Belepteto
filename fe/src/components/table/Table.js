@@ -190,7 +190,7 @@ export function TablaPortas() {
   const [error, setError] = useState('');
   const felvesz = function () {
     try {
-      if (!felvettData.name || felvettData.idNumber === null || felvettData.idNumber.length < 10) {
+      if (!felvettData.name || felvettData.idNumber === null || felvettData.idNumber.length < 8) {
         setError('Kérjük írja be a nevet és a személyi számot (minimum 10 karakter).');
         return;
       } else {
@@ -620,7 +620,6 @@ export function TablaAdmin() {
     }
     axios.post(`/savedDay/create`, null, { headers: { Authorization: localStorage.getItem('token') } }).then((response) => {
       setSave(save.concat([response.data]));
-      console.log(response.data)
     }).catch((error) => {
       alert(error);
     });
