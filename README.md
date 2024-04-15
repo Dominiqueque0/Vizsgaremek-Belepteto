@@ -10,6 +10,10 @@ Gyakori probléma egyes munkahelyeken ahol portai szolgálat van, az érkező é
 embereket papíron vezetik, amely lassabb és fennáll a veszélye annak,
 hogy az elveszik vagy valakit lehagynak, illetve papíron visszakeresni lassabb.
 
-Dokumentációk:
+## Fikókok felhasználóneve és jelszavai:
+* Admin felhasználó: | admin | tesztelek |
+* Portás felhasználó: | portas | tesztelek |
+
+## Dokumentációk:
 ### [Backend](/documentation/backend/main.md) <br>
 ### [Frontend](/documentation/frontend/main.md) <br>
