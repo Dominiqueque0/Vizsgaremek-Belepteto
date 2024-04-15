@@ -10,7 +10,7 @@
 | Elsődleges lefutás         | A felhasználó a főoldalon áll.<br/> Megnyomja a mentés ikont.<br/>A rendszer lementi az adott nap belépéseit majd lefut a [UC-V-DeleteAll](visit_usecases.md) használati eset. | 
 | Alternatívák és kivételek  | -                                                                                                                                                                              | 
 | Utófelvétel                | Az összes belépés törlésre került a bal oldali "belépői" táblából és rögzítésre kerülnek a nap be- és kilépései.                                                               |                  
-| Eredmény                   | A belépések nullázódnak, a felhasználó nem látja a belépés táblában a korábbi belépéseket, de megtekintheti az aznapi mentett adatokat.                                        |                  | Használati eset realizáció | Technikai modell                                                                                                                                                               |                                                                                                                                                              
+| Eredmény                   | A belépések nullázódnak, a felhasználó nem látja a belépés táblában a korábbi belépéseket, de megtekintheti az aznapi mentett adatokat.                                        |                                                                                                                                                                           
 
 | Név                        | Lementett nap visszakeresés                                                                                                                  |
 |----------------------------|----------------------------------------------------------------------------------------------------------------------------------------------|
@@ -21,4 +21,4 @@
 | Alternatívák és kivételek  | -                                                                                                                                            | 
 | Utófelvétel                | A nap összes belépése kiválogatásra kerül az adatbázisból.                                                                                   | 
 | Eredmény                   | A felhasználó látja a belépéseket az adott napra vonatkozóan.                                                                                | 
-| Használati eset realizáció | Technikai modell                                                                                                                             | 
+
