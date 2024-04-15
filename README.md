@@ -15,7 +15,7 @@ hogy az elveszik vagy valakit lehagynak, illetve papíron visszakeresni lassabb.
 * Portás felhasználó: | portas | tesztelek |
 
 ## access denied for user 'root'@'localhost' hiba javítása  
-* "spring.datasource.password = root " helyett"spring.datasource.password =" az application.properties file-ban.
+* "spring.datasource.password = root" helyett"spring.datasource.password =" az application.properties file-ban.
 
 ## Dokumentációk:
 ### [Backend](/documentation/backend/main.md) <br>
