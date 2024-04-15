@@ -191,7 +191,7 @@ export function TablaPortas() {
   const felvesz = function () {
     try {
       if (!felvettData.name || felvettData.idNumber === null || felvettData.idNumber.length < 8) {
-        setError('Kérjük írja be a nevet és a személyi igazolvány számot (minimum 8 karakter).');
+        setError('Kérjük írja be a nevet és a személyi igazolvány számot (pontosan 8 karakter).');
         return;
       } else {
         setError('');
@@ -460,8 +460,8 @@ export function TablaPortas() {
                 defaultValue=""
                 variant="standard"
                 inputProps={{
-                  minLength: 10,
-                  maxLength: 10,
+                  minLength: 8,
+                  maxLength: 8,
                 }}
                 name='idNumber'
                 onChange={handleSelect}
@@ -706,8 +706,8 @@ export function TablaAdmin() {
   const [error, setError] = useState('');
   const felvesz = function () {
     try {
-      if (!felvettData.name || felvettData.idNumber === null || felvettData.idNumber.length < 10) {
-        setError('Kérjük írja be a nevet és a személyi igazolvány számot (minimum 10 karakter).');
+      if (!felvettData.name || felvettData.idNumber === null || felvettData.idNumber.length < 8) {
+        setError('Kérjük írja be a nevet és a személyi igazolvány számot (pontosan 8 karakter).');
         return;
       } else {
         setError('');
@@ -981,8 +981,8 @@ export function TablaAdmin() {
                 defaultValue=""
                 variant="standard"
                 inputProps={{
-                  minLength: 10,
-                  maxLength: 10,
+                  minLength: 8,
+                  maxLength: 8,
                 }}
                 name='idNumber'
                 onChange={handleSelect}
