@@ -36,7 +36,6 @@ export default function Bejelentkezo() {
             }
             localStorage.setItem('auth', response.data.userType);
             localStorage.setItem('token', 'Bearer ' + response.headers['jwt-token']);
-            console.log('Login successful :', localStorage.getItem('token'), localStorage.getItem('auth'));
             axios.defaults.headers.common['Authorization'] = localStorage.getItem('token');
         } catch (error) {
             console.error('Login failed:', error.response ? error.response.data : error.message);
