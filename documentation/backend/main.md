@@ -4,17 +4,17 @@
 
 ### [Autentikáció](authentication.md) <br>
 
-### [Controller csomagok](Controllers.md) <br>
+### [Controller csomag](Controllers.md) <br>
 
-### [Converter csomagok](Converters.md) <br>
+### [Converter csomag](Converters.md) <br>
 
-### [DTO csomagok](dto.md) <br>
+### [DTO csomag](dto.md) <br>
 
-### [Model csomagok](Models.md) <br>
+### [Model csomag](Models.md) <br>
 
-### [Repository csomagok](Repository.md) <br>
+### [Repository csomag](Repository.md) <br>
 
-### [Szervíz csomagok](Service.md) <br>
+### [Szervíz csomag](Service.md) <br>
 
 ### [Felhasznált depencency-k](dependencies.md) <br>
 
