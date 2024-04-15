@@ -10,7 +10,7 @@ Alapfunkciók: A felhasználó bejelentkeztetése, illetve a megfelelő oldalra 
 
 #### Arculat
 
-![bejelentkezooldal](loginpage.png)
+![bejelentkezooldal](loginpage.jpg)
 
 #### A felületen lévő mezők
 
@@ -23,5 +23,5 @@ Alapfunkciók: A felhasználó bejelentkeztetése, illetve a megfelelő oldalra 
 
 | Funkció                  |                                                                                           Esemény                                                                                           | Megjegyzés |
 |:-------------------------|:-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------:|-----------:|
-| Belépés gombra kattintás | Végrehajtásra került az [UC-U-LOGIN](user_usecases.md), Felhasználó bejelentkezése használati eset. A frontend a felhasználó típusa szerint (Admin vagy portás) a megfelelő oldalra navigál |          - |
+| Belépés gombra kattintás | Végrehajtásra került az [UC-U-LOGIN](user_usecases.md), Felhasználó bejelentkezése használati eset. A frontend a felhasználó típusa szerint (Admin vagy portás) a megfelelő oldalra navigál |          - |            |
 

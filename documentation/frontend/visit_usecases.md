@@ -59,4 +59,15 @@
 | Használati eset realizáció | Technikai modell                                                                                               | 
 |
 
+| Név                        | Felhasználó törlése                                                                                                                                                          |
+|----------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Azonosító                  | UC_V_DeleteAll                                                                                                                                                               |
+| Leírás                     | A belépések "nullázása"                                                                                                                                                      |
+| Kiváltó esemény            | A portás vagy az admin le akarja zárni az adott napot.                                                                                                                       |
+| Elsődleges lefutás         | A felhasználó a főoldalon áll.<br/> Megnyomja a mentés ikont.<br/>A rendszer törli az összes belépést miután lefutott a [UC-SD-Create](saveday_usecases.md) használati eset. | 
+| Alternatívák és kivételek  | -                                                                                                                                                                            | 
+| Utófelvétel                | Az összes belépés törlésre került a bal oldali "belépői" táblából .                                                                                                          | 
+| Eredmény                   | A belépések nullázódnak.                                                                                                                                                     | 
+| Használati eset realizáció | Technikai modell                                                                                                                                                             | 
+|
 ---

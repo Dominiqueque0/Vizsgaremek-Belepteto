@@ -2,7 +2,7 @@
 
 ---
 
-| Név                        | Új felhasználó felvétele                                                                                                                      |
+| Név                        | Új Vendég felvétele                                                                                                                           |
 |----------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------|
 | Azonosító                  | UC_VR_CREATE                                                                                                                                  |
 | Leírás                     | Egy új vendég rögzítése a rendszerben                                                                                                         |
@@ -24,7 +24,7 @@
 | Eredmény                   | A felhaználó típusától függően az alaklmazás a megfelelő oldalra navítál.                                                                                                              | 
 | Használati eset realizáció | Technikai modell                                                                                                                                                                       | 
 
-| Név                        | Felhasználók listázása                                                  |
+| Név                        | Vendégek listázása                                                      |
 |----------------------------|-------------------------------------------------------------------------|
 | Azonosító                  | UC_VR_List                                                              |
 | Leírás                     | Az összes rendszerben található vendég kilistázása                      |
@@ -35,7 +35,7 @@
 | Eredmény                   | A felhasználó látja az összes adatot.                                   | 
 | Használati eset realizáció | Technikai modell                                                        | 
 
-| Név                        | Felhasználó törlése                                                                        |
+| Név                        | Vendég törlése                                                                             |
 |----------------------------|--------------------------------------------------------------------------------------------|
 | Azonosító                  | UC_VR_Delete                                                                               |
 | Leírás                     | ID megadásával vendég törlése a rendszerből                                                |

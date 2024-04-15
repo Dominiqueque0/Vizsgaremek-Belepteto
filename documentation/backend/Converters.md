@@ -2,7 +2,9 @@
 
 Ez a csomag tartalmazza a konverter osztályokat, amelyek a DTO-k és entitások közötti átalakítást végzik.
 
-### Converter java csomagok:
+---
+
+# Converter java csomagok:
 
 ## UserConverter.java
 
@@ -19,3 +21,9 @@ Konverter osztály a látogatási entitások és DTO-k közötti átalakításho
 ## VisitorConverter.java
 
 Konverter osztály a látogatói entitások és DTO-k közötti átalakításhoz.
+
+---
+
+## SavedDayConverter.java
+
+Ez az osztály felelős a `SavedDay` és `Visit` entitások közötti konverziók végrehajtásáért.

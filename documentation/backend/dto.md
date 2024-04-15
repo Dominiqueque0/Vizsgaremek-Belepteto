@@ -6,7 +6,7 @@ Ez a csomag tartalmazza a DTO (Data Transfer Object) osztályokat, amelyek az ad
 
 DTO osztály egy új felhasználó létrehozásához.
 
-### Attributes
+### Attribútumok
 - `name`: Felhasználó teljes neve.
 - `userName`: Felhasználónév.
 - `password`: Jelszó.
@@ -18,7 +18,7 @@ DTO osztály egy új felhasználó létrehozásához.
 
 DTO osztály a felhasználói adatok lekérdezéséhez.
 
-### Attributes
+### Attribútumok
 - `id`: Felhasználó azonosítója.
 - `name`: Felhasználó teljes neve.
 - `userName`: Felhasználónév.
@@ -31,7 +31,7 @@ DTO osztály a felhasználói adatok lekérdezéséhez.
 
 DTO osztály a felhasználói adatok jelszó nélküli lekérdezéséhez.
 
-### Attributes
+### Attribútumok
 - `id`: Felhasználó azonosítója.
 - `name`: Felhasználó teljes neve.
 - `userName`: Felhasználónév.
@@ -43,7 +43,7 @@ DTO osztály a felhasználói adatok jelszó nélküli lekérdezéséhez.
 
 Ez a DTO osztály egy új látogatás adatait reprezentálja.
 
-### Attributes
+### Attribútumok
 - `visitorId` (Integer): Látogató azonosítója.
 - `janitorId` (Integer): Intéző azonosítója.
 - `entryTime` (Date): Belépés ideje.
@@ -56,7 +56,7 @@ Ez a DTO osztály egy új látogatás adatait reprezentálja.
 
 Ez a DTO osztály a látogatási adatokat reprezentálja.
 
-### Attributes
+### Attribútumok
 - `id` (Integer): Látogatás azonosítója.
 - `visitorId` (Integer): Látogató azonosítója.
 - `janitorId` (Integer): Intéző azonosítója.
@@ -70,7 +70,7 @@ Ez a DTO osztály a látogatási adatokat reprezentálja.
 
 Ez a DTO osztály egy látogatás rekord frissítését reprezentálja.
 
-### Attributes
+### Attribútumok
 - `exitTime` (Date): Kilépés ideje.
 
 ---
@@ -79,7 +79,7 @@ Ez a DTO osztály egy látogatás rekord frissítését reprezentálja.
 
 Ez a DTO osztály egy új látogató adatait reprezentálja.
 
-### Attributes
+### Attribútumok
 - `name` (String): Látogató neve.
 - `visitorType` (VisitorType): Látogató típusa.
 - `idNumber` (String): Azonosító szám.
@@ -90,10 +90,32 @@ Ez a DTO osztály egy új látogató adatait reprezentálja.
 
 Ez a DTO osztály a látogató adatait reprezentálja.
 
-### Attributes
+### Attribútumok
 - `id` (Integer): Látogató azonosítója.
 - `name` (String): Látogató neve.
 - `visitorType` (VisitorType): Látogató típusa.
 - `idNumber` (String): Azonosító szám.
 
+---
 
+# CreateSavedDay.java
+
+Ez a DTO (Data Transfer Object) osztály a mentett napok létrehozásához szükséges adatokat tartalmazza.
+
+
+### Attribútumok
+
+- `date` (Date): A mentett nap dátuma.
+- `visitId` (Visit): A mentett nap látogatásához tartozó azonosító.
+
+---
+
+# GetSavedDay.java
+
+Ez a DTO (Data Transfer Object) osztály a mentett napok lekérdezéséhez szükséges adatokat tartalmazza.
+
+### Attribútumok
+
+- `id` (Integer): A mentett nap azonosítója.
+- `date` (Date): A mentett nap dátuma.
+- `visitId` (Visit): A mentett nap látogatásához tartozó azonosító.

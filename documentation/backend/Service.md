@@ -7,3 +7,4 @@ Ez a csomag tartalmazza az alkalmazás szolgáltatási rétegének osztályait, 
 #### [UserService](userservice.md) <br>
 #### [VisitorService](visitorservice.md) <br>
 #### [VisitService](visitservice.md) <br>
+#### [SaveDayService](savedayservice.md) <br>
