@@ -10,9 +10,7 @@
 | Elsődleges lefutás         | A felhasználó a főoldalon a felvétel gombra nyom.<br/> Megadja az adatokat és megnyomja a felvétel gombot.<br/>A rendszer a bent lévő személyek táblázatba átrakja a személyt. | 
 | Alternatívák és kivételek  | -                                                                                                                                                                              | 
 | Utófelvétel                | Az adott személy (dolgozó vagy vendég) sikeresen rögzítésre került a rendszerben.                                                                                              | 
-| Eredmény                   | Az portás a személyt a rendszerben kezelni tudja.                                                                                                                              | 
-| Használati eset realizáció | Technikai modell                                                                                                                                                               | 
-
+| Eredmény                   | Az portás a személyt a rendszerben kezelni tudja.                                                                                                                              |                                                                                                                           
 | Név                        | Belépések listázása                                            |
 |----------------------------|----------------------------------------------------------------|
 | Azonosító                  | UC_V_LIST                                                      |
@@ -22,7 +20,7 @@
 | Alternatívák és kivételek  | -                                                              | 
 | Utófelvétel                | -                                                              | 
 | Eredmény                   | A felhasználó látja kik vannak belépve                         | 
-| Használati eset realizáció | Technikai modell                                               | 
+
 
 | Név                        | Belépés lekérdezése                                                       |
 |----------------------------|---------------------------------------------------------------------------|
@@ -33,7 +31,7 @@
 | Alternatívák és kivételek  | E1: Nem létezik ember ilyen ID-val <br> E1: A kérés nem fut le, hibát dob | 
 | Utófelvétel                | -                                                                         | 
 | Eredmény                   | A felhasználó látja az adott személy adatait                              | 
-| Használati eset realizáció | Technikai modell                                                          | 
+ 
 
 | Név                        | Felhasználó törlése                                                                             |
 |----------------------------|-------------------------------------------------------------------------------------------------|
@@ -44,7 +42,7 @@
 | Alternatívák és kivételek  | E1: Nem létezik ilyen ID-val ember <br> E1: A rendszer hibát dob és a kérés nem fut le          | 
 | Utófelvétel                | A belépés törlésre került a rendszerben.                                                        | 
 | Eredmény                   | A belépés nem lesz benne a rendszerben.                                                         | 
-| Használati eset realizáció | Technikai modell                                                                                | 
+ 
 
 
 | Név                        | Kilépés megadása                                                                                               |
@@ -56,7 +54,7 @@
 | Alternatívák és kivételek  | -                                                                                                              | 
 | Utófelvétel                | -                                                                                                              | 
 | Eredmény                   | A kilépés rögzítésre került a rendszerben.                                                                     | 
-| Használati eset realizáció | Technikai modell                                                                                               | 
+
 
 
 | Név                        | Felhasználó törlése                                                                                                                                                          |
@@ -68,6 +66,6 @@
 | Alternatívák és kivételek  | -                                                                                                                                                                            | 
 | Utófelvétel                | Az összes belépés törlésre került a bal oldali "belépői" táblából .                                                                                                          | 
 | Eredmény                   | A belépések nullázódnak.                                                                                                                                                     | 
-| Használati eset realizáció | Technikai modell                                                                                                                                                             | 
+
 
 ---
