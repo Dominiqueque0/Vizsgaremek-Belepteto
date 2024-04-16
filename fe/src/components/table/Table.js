@@ -740,15 +740,17 @@ export function TablaAdmin() {
   let [change, setChange] = React.useState([]);
   let [deletedVisit, setDeleted] = React.useState([]);
   function deletePerson(id) {
-    axios.delete(`/visitor/${id}`, { headers: { Authorization: localStorage.getItem("token") } }).catch((error) => {
-      alert(error);
-    });
-    setVisitor(visitor.filter(item => item.id !== id));
+    if (window.confirm('Biztos ki szeretnéd törölni?')) {
+      axios.delete(`/visitor/${id}`, { headers: { Authorization: localStorage.getItem("token") } }).catch((error) => {
+      });
+  }
+  setVisitor(visitor.filter(item => item.id !== id));
   }
   function deleteVisit(id) {
-    axios.delete(`/visit/${id}`, { headers: { Authorization: localStorage.getItem("token") } }).catch((error) => {
-      alert(error);
-    });
+    if (window.confirm('Biztos ki szeretnéd törölni?')) {
+      axios.delete(`/visit/${id}`, { headers: { Authorization: localStorage.getItem("token") } }).catch((error) => {
+      });
+  }
     setVisit(visit.filter(item => item.id !== id));
   }
 
