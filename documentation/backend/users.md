@@ -2,7 +2,7 @@
 
 Ez az osztály reprezentálja a felhasználókat az alkalmazásban.
 
-### Attributes
+### Attribútumok
 - `id` (Integer): Felhasználó azonosítója.
 - `name` (String): Felhasználó teljes neve.
 - `userName` (String): Felhasználónév.

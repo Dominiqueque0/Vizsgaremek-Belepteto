@@ -2,7 +2,7 @@
 
 Ez az osztály reprezentálja a látogatásokat az alkalmazásban.
 
-### Attributes
+### Attribútumok
 - `id` (Integer): Látogatás azonosítója.
 - `visitor` (Visitor): Látogató entitás.
 - `janitor` (Users): Intéző entitás.

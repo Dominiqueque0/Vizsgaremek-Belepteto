@@ -4,7 +4,7 @@
 
 | Név                        | Új Vendég felvétele                                                                                                                           |
 |----------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------|
-| Azonosító                  | UC_VR_CREATE                                                                                                                                  |
+| Azonosító                  | UC-VR-CREATE                                                                                                                                  |
 | Leírás                     | Egy új vendég rögzítése a rendszerben                                                                                                         |
 | Kiváltó esemény            | Az egyik felhasználó (portás) egy vendéget kíván rögzíteni                                                                                    |
 | Elsődleges lefutás         | A felhasználó a főoldalon a felvétel gombra nyom.<br/> Megadja az adatokat és megnyomja a felvétel gombot.<br/>A rendszer rögzítí a vendéget. | 
@@ -15,7 +15,7 @@
 
 | Név                        | Bejelentkezés                                                                                                                                                                          |
 |----------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| Azonosító                  | UC_VR_LOGIN                                                                                                                                                                            |
+| Azonosító                  | UC-VR-LOGIN                                                                                                                                                                            |
 | Leírás                     | Bejelentkezés a rendszerbe                                                                                                                                                             |
 | Kiváltó esemény            | Egy személy kíván bejelentkezni az alkalmazásba                                                                                                                                        |
 | Elsődleges lefutás         | A felhasználó a bejelentezés oldaon áll.<br/> Beírja a felhasználónevet és jelszót majd megnyomja a belépés gombot.<br/>Ha a két adat megfelelő akkor bejelentkeztünk az alkalmazásba. | 
@@ -26,7 +26,7 @@
 
 | Név                        | Vendégek listázása                                                      |
 |----------------------------|-------------------------------------------------------------------------|
-| Azonosító                  | UC_VR_List                                                              |
+| Azonosító                  | UC-VR-List                                                              |
 | Leírás                     | Az összes rendszerben található vendég kilistázása                      |
 | Kiváltó esemény            | Valaki meg akarja nézni az összes vendéget aki benne van a rendszerben. |
 | Elsődleges lefutás         | A személy a főoldalon áll ahol ezt alapból látja.                       | 
@@ -37,7 +37,7 @@
 
 | Név                        | Vendég törlése                                                                             |
 |----------------------------|--------------------------------------------------------------------------------------------|
-| Azonosító                  | UC_VR_Delete                                                                               |
+| Azonosító                  | UC-VR-Delete                                                                               |
 | Leírás                     | ID megadásával vendég törlése a rendszerből                                                |
 | Kiváltó esemény            | Az admin kíván törölni egy vendéget a rendszerből.                                         |
 | Elsődleges lefutás         | Az admin a főoldalon áll.<br/> Megnyomja a törlés gombot.<br/>A rendszer törli a vendéget. | 
