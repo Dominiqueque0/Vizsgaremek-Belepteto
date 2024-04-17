@@ -51,11 +51,6 @@ public class UserController {
     private UserService userService;
     private JWTTokenProvider jwtTokenProvider;
 
-    @PostMapping("/register")
-    private Users createUser(@RequestBody Users user){
-        user.setPassword(encoder.encode(user.getPassword()));
-        return repository.save(user);
-    }
 
     @PostMapping("/list")
     @Operation(summary = "Felhasználók listázása", description = "Az összes rendszerben található felhasználó kilistázása a jelszava nélkül")
